@@ -1,12 +1,9 @@
 @import "tailwindcss";
 
-/* Two typefaces, one per side: the diagram is deliberately playful, the
-   explanatory text next to it stays legible. Declared as theme tokens (not
-   raw CSS) so they're still ordinary Tailwind utilities (`font-diagram`,
-   `font-lexend`) on the elements that use them. */
+/* Declared as a theme token (not raw CSS) so it's still an ordinary
+   Tailwind utility (`font-diagram`) on the elements that use it. */
 @theme {
   --font-diagram: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
-  --font-lexend: "Lexend", sans-serif;
 }
 
 /* Tailwind has no utility for animating along an arbitrary SVG path, so the
@@ -118,6 +115,37 @@
 
 #diagram:not([data-active-stage="1"]) #tricuspid-block {
   opacity: 1;
+}
+
+/* Flowchart: a static keyword-per-stage mnemonic aid that mirrors the
+   diagram's own data-active-stage, so scrolling the diagram also highlights
+   the matching flowchart node — one call site, two elements. */
+.flow-node {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-slate-200);
+  background-color: var(--color-white);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  color: var(--color-slate-600);
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.flow-arrow {
+  text-align: center;
+  color: var(--color-slate-400);
+  line-height: 1;
+}
+
+#flowchart[data-active-stage="1"] [data-flow-stage="1"],
+#flowchart[data-active-stage="2"] [data-flow-stage="2"],
+#flowchart[data-active-stage="3"] [data-flow-stage="3"],
+#flowchart[data-active-stage="4"] [data-flow-stage="4"],
+#flowchart[data-active-stage="5"] [data-flow-stage="5"],
+#flowchart[data-active-stage="6"] [data-flow-stage="6"] {
+  border-color: var(--color-amber-400);
+  background-color: var(--color-amber-50);
+  color: var(--color-amber-800);
+  font-weight: 700;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -22,8 +22,9 @@ const STAGES: Stage[] = [
 
 const diagram = document.querySelector<HTMLElement>("[data-testid=\"diagram\"]");
 const caption = document.querySelector<HTMLElement>("[data-testid=\"caption\"]");
+const flowchart = document.querySelector<HTMLElement>("#flowchart");
 const buttons = document.querySelectorAll<HTMLButtonElement>("[data-stage-target]");
-const sections = document.querySelectorAll<HTMLElement>("main > div > section");
+const sections = document.querySelectorAll<HTMLElement>("[data-testid^='stage-']");
 
 function setActiveStage(id: string): void {
   const stage = STAGES.find((s) => s.id === id);
@@ -31,6 +32,7 @@ function setActiveStage(id: string): void {
 
   diagram.dataset.activeStage = id;
   caption.textContent = stage.caption;
+  if (flowchart) flowchart.dataset.activeStage = id;
 
   for (const button of buttons) {
     button.setAttribute("aria-pressed", String(button.dataset.stageTarget === id));
