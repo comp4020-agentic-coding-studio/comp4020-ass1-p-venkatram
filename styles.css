@@ -88,20 +88,24 @@
   transform: rotate(-35deg);
 }
 
+/* Pulmonary/aortic flaps rotate the opposite way from tricuspid/mitral:
+   blood crosses them heading up into the artery, not down into a chamber,
+   so they must open toward the vessel above rather than the ventricle
+   below. */
 #diagram[data-active-stage="3"] #pulmonary-flap-left {
-  transform: rotate(35deg);
+  transform: rotate(-35deg);
 }
 
 #diagram[data-active-stage="3"] #pulmonary-flap-right {
-  transform: rotate(-35deg);
-}
-
-#diagram[data-active-stage="6"] #aortic-flap-left {
   transform: rotate(35deg);
 }
 
-#diagram[data-active-stage="6"] #aortic-flap-right {
+#diagram[data-active-stage="6"] #aortic-flap-left {
   transform: rotate(-35deg);
+}
+
+#diagram[data-active-stage="6"] #aortic-flap-right {
+  transform: rotate(35deg);
 }
 
 #diagram[data-active-stage="5"] #mitral-flap-left {
