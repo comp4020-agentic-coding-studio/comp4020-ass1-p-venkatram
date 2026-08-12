@@ -8,10 +8,10 @@
   </head>
   <body class="bg-slate-50 font-diagram text-slate-900">
     <header class="fixed inset-x-0 top-0 z-20 hidden border-b border-slate-200 bg-white/80 backdrop-blur lg:block">
-      <nav aria-label="Primary" class="grid grid-cols-3 items-center px-6 py-3">
-        <p class="text-lg font-bold text-slate-800">Flow of Blood</p>
+      <nav aria-label="Primary" class="grid grid-cols-3 items-center py-3">
+        <p class="text-center text-lg font-bold text-slate-800">Flow of Blood</p>
         <p class="text-center text-lg font-bold text-slate-800">How it Works</p>
-        <p class="text-lg font-bold text-slate-800">How to remember</p>
+        <p class="text-center text-lg font-bold text-slate-800">How to remember</p>
       </nav>
     </header>
 
@@ -49,13 +49,22 @@
               <!-- vessels (resting state, drawn under the flow paths) -->
               <path d="M160,0 L160,120 Q160,160 150,175" class="fill-none stroke-sky-300" stroke-width="14" />
               <path d="M50,420 L50,320 Q50,260 105,245" class="fill-none stroke-sky-300" stroke-width="14" />
-              <path d="M150,300 L150,230 Q150,170 100,145" class="fill-none stroke-sky-300" stroke-width="12" />
+              <path
+                d="M190,312 Q208,300 208,260 L208,170 Q208,110 160,90 Q120,75 100,110 L100,145"
+                class="fill-none stroke-sky-300"
+                stroke-width="12"
+              />
               <path d="M310,145 Q260,190 240,215" class="fill-none stroke-rose-300" stroke-width="12" />
               <path
-                d="M270,300 L270,230 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
+                d="M230,312 Q212,300 212,260 L212,180 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
                 class="fill-none stroke-rose-300"
                 stroke-width="14"
               />
+              <!-- AV valve-to-ventricle ducts: drawn here (under the chambers,
+                   like every other vessel) so the chambers paint over their far
+                   ends instead of the duct floating on top with a visible cap -->
+              <path d="M150,282 L150,311" class="fill-none stroke-sky-300" stroke-width="12" />
+              <path d="M270,282 L270,313" class="fill-none stroke-rose-300" stroke-width="12" />
 
               <!-- chambers -->
               <ellipse id="ra-chamber" cx="150" cy="220" rx="55" ry="50" class="fill-sky-100 stroke-sky-600" stroke-width="3" />
@@ -77,7 +86,7 @@
                 <line id="tricuspid-flap-left" x1="135" y1="275" x2="150" y2="275" class="valve-flap" style="transform-origin: 135px 275px" />
                 <line id="tricuspid-flap-right" x1="165" y1="275" x2="150" y2="275" class="valve-flap" style="transform-origin: 165px 275px" />
               </g>
-              <g id="tricuspid-block" class="block-glyph" transform="translate(172,250) scale(0.6) translate(-172,-250)">
+              <g id="tricuspid-block" class="block-glyph" transform="translate(172,234) scale(0.8) translate(-172,-250)">
                 <line x1="172" y1="260" x2="172" y2="244" class="stroke-rose-500" stroke-width="3" />
                 <path d="M166,250 L172,242 L178,250" class="fill-none stroke-rose-500" stroke-width="3" />
                 <line x1="163" y1="256" x2="181" y2="246" class="stroke-rose-500" stroke-width="3" />
@@ -91,12 +100,16 @@
               <text x="290" y="272" class="fill-slate-500 text-[9px] font-semibold uppercase tracking-widest">Mitral valve</text>
 
               <g id="pulmonary-valve">
-                <rect x="163" y="292" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
-                <line id="pulmonary-flap-left" x1="163" y1="299" x2="176" y2="299" class="valve-flap" style="transform-origin: 163px 299px" />
-                <line id="pulmonary-flap-right" x1="189" y1="299" x2="176" y2="299" class="valve-flap" style="transform-origin: 189px 299px" />
+                <rect x="177" y="305" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+                <line id="pulmonary-flap-left" x1="177" y1="312" x2="190" y2="312" class="valve-flap" style="transform-origin: 177px 312px" />
+                <line id="pulmonary-flap-right" x1="203" y1="312" x2="190" y2="312" class="valve-flap" style="transform-origin: 203px 312px" />
               </g>
 
-              <rect x="255" y="298" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+              <g id="aortic-valve">
+                <rect x="217" y="305" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+                <line id="aortic-flap-left" x1="217" y1="312" x2="230" y2="312" class="valve-flap" style="transform-origin: 217px 312px" />
+                <line id="aortic-flap-right" x1="243" y1="312" x2="230" y2="312" class="valve-flap" style="transform-origin: 243px 312px" />
+              </g>
 
               <!-- labels -->
               <text x="80" y="10" class="fill-slate-400 text-[11px] font-semibold uppercase tracking-widest">
@@ -134,11 +147,11 @@
 
               <g id="flow-3" class="flow-path" data-color="sky">
                 <path
-                  d="M150,385 L150,300 L150,230 Q150,170 100,145"
+                  d="M150,385 L150,345 Q165,320 190,312 Q208,300 208,260 L208,170 Q208,110 160,90 Q120,75 100,110 L100,145"
                   class="stroke-amber-500"
                   stroke-width="6"
                   fill="none"
-               
+
                 />
                 <circle class="blood-cell fill-sky-600" r="6" />
                 <circle class="blood-cell fill-sky-600" r="6" />
@@ -161,11 +174,11 @@
 
               <g id="flow-6" class="flow-path" data-color="rose">
                 <path
-                  d="M270,395 L270,300 L270,230 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
+                  d="M270,395 L270,345 Q250,320 230,312 Q212,300 212,260 L212,180 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
                   class="stroke-amber-500"
                   stroke-width="6"
                   fill="none"
-               
+
                 />
                 <circle class="blood-cell fill-rose-600" r="6" />
                 <circle class="blood-cell fill-rose-600" r="6" />
@@ -189,8 +202,13 @@
       <section aria-labelledby="heading-how-it-works" class="lg:col-start-2">
         <h2 id="heading-how-it-works" class="px-6 pt-8 text-lg font-bold text-slate-800 lg:sr-only">How it Works</h2>
 
+        <p class="flex flex-col items-center gap-1 bg-slate-50 px-6 py-3 text-sm font-bold text-sky-600 lg:sticky lg:top-12 lg:z-10">
+          <span>Scroll to move through each stage</span>
+          <span aria-hidden="true" class="scroll-hint-arrow text-4xl [text-shadow:3px_3px_0_var(--color-sky-800)]">↓</span>
+        </p>
+
         <section data-testid="stage-1" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:justify-center lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="1" aria-pressed="true" class="stage-button text-left">
+          <button type="button" data-stage-target="1" aria-pressed="true" class="stage-button text-center">
             <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 1 of 6</span>
             <h3 class="mt-2 text-3xl font-bold text-slate-900">Blood comes home</h3>
             <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
@@ -202,7 +220,7 @@
         </section>
 
         <section data-testid="stage-2" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:justify-center lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="2" aria-pressed="false" class="stage-button text-left">
+          <button type="button" data-stage-target="2" aria-pressed="false" class="stage-button text-center">
             <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 2 of 6</span>
             <h3 class="mt-2 text-3xl font-bold text-slate-900">Into the right ventricle</h3>
             <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
@@ -213,7 +231,7 @@
         </section>
 
         <section data-testid="stage-3" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:justify-center lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="3" aria-pressed="false" class="stage-button text-left">
+          <button type="button" data-stage-target="3" aria-pressed="false" class="stage-button text-center">
             <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 3 of 6</span>
             <h3 class="mt-2 text-3xl font-bold text-slate-900">Off to the lungs</h3>
             <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
@@ -225,7 +243,7 @@
         </section>
 
         <section data-testid="stage-4" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:justify-center lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="4" aria-pressed="false" class="stage-button text-left">
+          <button type="button" data-stage-target="4" aria-pressed="false" class="stage-button text-center">
             <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 4 of 6</span>
             <h3 class="mt-2 text-3xl font-bold text-slate-900">Picking up oxygen</h3>
             <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
@@ -237,7 +255,7 @@
         </section>
 
         <section data-testid="stage-5" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:justify-center lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="5" aria-pressed="false" class="stage-button text-left">
+          <button type="button" data-stage-target="5" aria-pressed="false" class="stage-button text-center">
             <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 5 of 6</span>
             <h3 class="mt-2 text-3xl font-bold text-slate-900">Into the strongest chamber</h3>
             <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
@@ -249,7 +267,7 @@
         </section>
 
         <section data-testid="stage-6" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:justify-center lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="6" aria-pressed="false" class="stage-button text-left">
+          <button type="button" data-stage-target="6" aria-pressed="false" class="stage-button text-center">
             <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 6 of 6</span>
             <h3 class="mt-2 text-3xl font-bold text-slate-900">Out to the body</h3>
             <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">

@@ -96,6 +96,14 @@
   transform: rotate(-35deg);
 }
 
+#diagram[data-active-stage="6"] #aortic-flap-left {
+  transform: rotate(35deg);
+}
+
+#diagram[data-active-stage="6"] #aortic-flap-right {
+  transform: rotate(-35deg);
+}
+
 #diagram[data-active-stage="5"] #mitral-flap-left {
   transform: rotate(35deg);
 }
@@ -105,15 +113,16 @@
 }
 
 /* The tricuspid "blocked" glyph marks the direction the valve won't let
-   blood travel. It has nothing to explain until the right atrium contracts,
-   so it fades in next to that stage's flow line and then stays put — once
-   the mechanism has been introduced it remains a permanent annotation. */
+   blood travel while the right ventricle is contracting — that's the
+   moment the valve has to hold shut to stop blood being pushed back up
+   into the right atrium. It's only meaningful for that one stage, so it
+   fades in with stage 3 and fades back out once the diagram moves on. */
 .block-glyph {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-#diagram:not([data-active-stage="1"]) #tricuspid-block {
+#diagram[data-active-stage="3"] #tricuspid-block {
   opacity: 1;
 }
 
@@ -136,16 +145,47 @@
   line-height: 1;
 }
 
+/* Highlight only the active node, tinted to match its stage's side of the
+   diagram: blue for the right heart, neutral for the lungs, rose for the
+   left heart. */
 #flowchart[data-active-stage="1"] [data-flow-stage="1"],
 #flowchart[data-active-stage="2"] [data-flow-stage="2"],
-#flowchart[data-active-stage="3"] [data-flow-stage="3"],
-#flowchart[data-active-stage="4"] [data-flow-stage="4"],
+#flowchart[data-active-stage="3"] [data-flow-stage="3"] {
+  border-color: var(--color-sky-400);
+  background-color: var(--color-sky-50);
+  color: var(--color-sky-700);
+  font-weight: 700;
+}
+
+#flowchart[data-active-stage="4"] [data-flow-stage="4"] {
+  border-color: var(--color-slate-400);
+  background-color: var(--color-slate-200);
+  color: var(--color-slate-700);
+  font-weight: 700;
+}
+
 #flowchart[data-active-stage="5"] [data-flow-stage="5"],
 #flowchart[data-active-stage="6"] [data-flow-stage="6"] {
-  border-color: var(--color-amber-400);
-  background-color: var(--color-amber-50);
-  color: var(--color-amber-800);
+  border-color: var(--color-rose-400);
+  background-color: var(--color-rose-50);
+  color: var(--color-rose-700);
   font-weight: 700;
+}
+
+.scroll-hint-arrow {
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -157,6 +197,10 @@
   #ra-chamber,
   #rv-chamber,
   #la-chamber {
+    animation: none;
+  }
+
+  .scroll-hint-arrow {
     animation: none;
   }
 }
