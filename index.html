@@ -3,21 +3,261 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>COMP4020 prototype</title>
+    <title>How blood flows through the heart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
-    <header>
+  <body class="bg-slate-50 font-sans text-slate-900">
+    <header
+      class="fixed inset-x-0 top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/80 px-4 py-3 backdrop-blur lg:px-8"
+    >
       <nav aria-label="Primary">
-        <a href="./">Home</a>
+        <a href="./" class="text-sm font-semibold tracking-wide text-slate-900">Heartbeat</a>
       </nav>
+      <p class="hidden text-xs text-slate-500 sm:block">Scroll, or click a stage, to trace the blood</p>
     </header>
-    <main>
-      <h1>COMP4020 prototype</h1>
-      <p data-testid="intro">
-        Replace this with your prototype. This week's brief is on the course website;
-        <code>spec/README.md</code> explains how the checks in this repo relate to it.
-      </p>
+
+    <main class="pt-12 lg:grid lg:grid-cols-2">
+      <h1 class="sr-only">How blood flows through the heart</h1>
+
+      <div
+        id="diagram"
+        data-testid="diagram"
+        data-active-stage="1"
+        class="sticky top-12 z-10 flex h-[45vh] items-center justify-center overflow-hidden bg-slate-50 lg:col-start-1 lg:row-span-6 lg:h-[calc(100vh-3rem)]"
+      >
+        <svg
+          viewBox="0 0 420 560"
+          role="img"
+          aria-labelledby="diagram-title"
+          aria-describedby="diagram-caption"
+          class="font-diagram h-full max-w-full px-6 py-4"
+        >
+          <title id="diagram-title">Diagram of the heart, its four chambers, and the lungs</title>
+
+          <g transform="skewY(-3)" stroke-linecap="round" stroke-linejoin="round">
+            <!-- lungs -->
+            <ellipse cx="110" cy="95" rx="60" ry="55" class="fill-slate-100 stroke-slate-300" stroke-width="2" />
+            <ellipse cx="310" cy="95" rx="60" ry="55" class="fill-slate-100 stroke-slate-300" stroke-width="2" />
+            <text x="210" y="50" text-anchor="middle" class="fill-slate-400 text-[13px] font-semibold uppercase tracking-widest">
+              Lungs
+            </text>
+
+            <!-- vessels (resting state, drawn under the flow paths) -->
+            <path d="M160,0 L160,120 Q160,160 150,175" class="fill-none stroke-sky-300" stroke-width="14" />
+            <path d="M50,560 L50,320 Q50,260 105,245" class="fill-none stroke-sky-300" stroke-width="14" />
+            <path d="M150,300 L150,230 Q150,170 100,145" class="fill-none stroke-sky-300" stroke-width="12" />
+            <path d="M310,145 Q260,190 240,215" class="fill-none stroke-rose-300" stroke-width="12" />
+            <path
+              d="M270,300 L270,230 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
+              class="fill-none stroke-rose-300"
+              stroke-width="14"
+            />
+
+            <!-- chambers -->
+            <ellipse id="ra-chamber" cx="150" cy="220" rx="55" ry="50" class="fill-sky-100 stroke-sky-600" stroke-width="3" />
+            <text x="150" y="225" text-anchor="middle" class="fill-sky-700 text-base font-bold">RA</text>
+
+            <ellipse id="la-chamber" cx="270" cy="220" rx="55" ry="50" class="fill-rose-100 stroke-rose-600" stroke-width="3" />
+            <text x="270" y="225" text-anchor="middle" class="fill-rose-700 text-base font-bold">LA</text>
+
+            <ellipse id="rv-chamber" cx="150" cy="385" rx="65" ry="80" class="fill-sky-200 stroke-sky-700" stroke-width="3" />
+            <text x="150" y="390" text-anchor="middle" class="fill-sky-800 text-base font-bold">RV</text>
+
+            <ellipse cx="270" cy="395" rx="72" ry="88" class="fill-rose-200 stroke-rose-700" stroke-width="3" />
+            <text x="270" y="400" text-anchor="middle" class="fill-rose-800 text-base font-bold">LV</text>
+
+            <!-- valves: plain rect looks closed; two hinged flaps lie flat over it
+                 at rest and swing open while the chamber behind them contracts -->
+            <g id="tricuspid-valve">
+              <rect x="135" y="268" width="30" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+              <line id="tricuspid-flap-left" x1="135" y1="275" x2="150" y2="275" class="valve-flap" style="transform-origin: 135px 275px" />
+              <line id="tricuspid-flap-right" x1="165" y1="275" x2="150" y2="275" class="valve-flap" style="transform-origin: 165px 275px" />
+            </g>
+            <g id="tricuspid-block" class="block-glyph">
+              <line x1="150" y1="260" x2="150" y2="244" class="stroke-rose-500" stroke-width="3" />
+              <path d="M144,250 L150,242 L156,250" class="fill-none stroke-rose-500" stroke-width="3" />
+              <line x1="141" y1="256" x2="159" y2="246" class="stroke-rose-500" stroke-width="3" />
+            </g>
+
+            <g id="mitral-valve">
+              <rect x="255" y="268" width="30" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+              <line id="mitral-flap-left" x1="255" y1="275" x2="270" y2="275" class="valve-flap" style="transform-origin: 255px 275px" />
+              <line id="mitral-flap-right" x1="285" y1="275" x2="270" y2="275" class="valve-flap" style="transform-origin: 285px 275px" />
+            </g>
+            <text x="290" y="272" class="fill-slate-500 text-[9px] font-semibold uppercase tracking-widest">Mitral valve</text>
+
+            <g id="pulmonary-valve">
+              <rect x="163" y="292" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+              <line id="pulmonary-flap-left" x1="163" y1="299" x2="176" y2="299" class="valve-flap" style="transform-origin: 163px 299px" />
+              <line id="pulmonary-flap-right" x1="189" y1="299" x2="176" y2="299" class="valve-flap" style="transform-origin: 189px 299px" />
+            </g>
+
+            <rect x="255" y="298" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
+
+            <!-- labels -->
+            <text x="80" y="10" class="fill-slate-400 text-[11px] font-semibold uppercase tracking-widest">
+              <tspan x="80" dy="0">Superior</tspan>
+              <tspan x="80" dy="12">vena cava</tspan>
+            </text>
+            <text x="5" y="465" class="fill-slate-400 text-[11px] font-semibold uppercase tracking-widest">
+              <tspan x="5" dy="0">Inferior</tspan>
+              <tspan x="5" dy="12">vena cava</tspan>
+            </text>
+            <text x="345" y="65" class="fill-slate-400 text-[11px] font-semibold uppercase tracking-widest">Aorta</text>
+
+            <!-- flow routes: hidden until their stage is active -->
+            <g id="flow-1" class="flow-path" data-color="sky">
+              <g class="flow-branch">
+                <path d="M160,0 L160,120 Q160,160 150,175 L150,220" class="stroke-amber-500" stroke-width="6" fill="none" />
+                <circle class="blood-cell fill-sky-600" r="6" />
+                <circle class="blood-cell fill-sky-600" r="6" />
+                <circle class="blood-cell fill-sky-600" r="6" />
+              </g>
+              <g class="flow-branch">
+                <path d="M50,560 L50,320 Q50,260 105,245 L150,220" class="stroke-amber-500" stroke-width="6" fill="none" />
+                <circle class="blood-cell fill-sky-600" r="6" />
+                <circle class="blood-cell fill-sky-600" r="6" />
+                <circle class="blood-cell fill-sky-600" r="6" />
+              </g>
+            </g>
+
+            <g id="flow-2" class="flow-path" data-color="sky">
+              <path d="M150,220 L150,385" class="stroke-amber-500" stroke-width="6" fill="none" />
+              <circle class="blood-cell fill-sky-600" r="6" />
+              <circle class="blood-cell fill-sky-600" r="6" />
+              <circle class="blood-cell fill-sky-600" r="6" />
+            </g>
+
+            <g id="flow-3" class="flow-path" data-color="sky">
+              <path
+                d="M150,385 L150,300 L150,230 Q150,170 100,145"
+                class="stroke-amber-500"
+                stroke-width="6"
+                fill="none"
+               
+              />
+              <circle class="blood-cell fill-sky-600" r="6" />
+              <circle class="blood-cell fill-sky-600" r="6" />
+              <circle class="blood-cell fill-sky-600" r="6" />
+            </g>
+
+            <g id="flow-4" class="flow-path" data-color="rose">
+              <path d="M100,145 Q170,195 270,220" class="stroke-amber-500" stroke-width="6" fill="none" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+            </g>
+
+            <g id="flow-5" class="flow-path" data-color="rose">
+              <path d="M270,220 L270,395" class="stroke-amber-500" stroke-width="6" fill="none" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+            </g>
+
+            <g id="flow-6" class="flow-path" data-color="rose">
+              <path
+                d="M270,395 L270,300 L270,230 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
+                class="stroke-amber-500"
+                stroke-width="6"
+                fill="none"
+               
+              />
+              <circle class="blood-cell fill-rose-600" r="6" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+              <circle class="blood-cell fill-rose-600" r="6" />
+            </g>
+          </g>
+        </svg>
+
+        <p
+          id="diagram-caption"
+          data-testid="caption"
+          role="status"
+          aria-live="polite"
+          class="absolute bottom-3 left-1/2 w-[92%] -translate-x-1/2 rounded-lg bg-white/90 px-3 py-2 text-center text-sm text-slate-700 shadow-sm sm:w-96"
+        >
+          Deoxygenated blood returns from the body through the venae cavae into the right atrium.
+        </p>
+      </div>
+
+      <div class="font-lexend lg:col-start-2">
+        <section data-testid="stage-1" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:px-16 lg:py-24">
+          <button type="button" data-stage-target="1" aria-pressed="true" class="stage-button text-left">
+            <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 1 of 6</span>
+            <h2 class="mt-2 text-3xl font-bold text-slate-900">Blood comes home</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600">
+              Every cell in your body hands its used, oxygen-poor blood back to two big veins — the superior and
+              inferior venae cavae — which empty into the <strong>right atrium</strong>, the heart's receiving
+              chamber.
+            </p>
+          </button>
+        </section>
+
+        <section data-testid="stage-2" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:px-16 lg:py-24">
+          <button type="button" data-stage-target="2" aria-pressed="false" class="stage-button text-left">
+            <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 2 of 6</span>
+            <h2 class="mt-2 text-3xl font-bold text-slate-900">Into the right ventricle</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600">
+              The right atrium contracts, pushing blood through the <strong>tricuspid valve</strong> into the
+              <strong>right ventricle</strong> below it — a one-way door that stops blood sliding back up.
+            </p>
+          </button>
+        </section>
+
+        <section data-testid="stage-3" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:px-16 lg:py-24">
+          <button type="button" data-stage-target="3" aria-pressed="false" class="stage-button text-left">
+            <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 3 of 6</span>
+            <h2 class="mt-2 text-3xl font-bold text-slate-900">Off to the lungs</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600">
+              The right ventricle squeezes through the <strong>pulmonary valve</strong> into the pulmonary artery,
+              which carries the blood to the <strong>lungs</strong> — the only vessel in the body carrying
+              oxygen-poor blood away from the heart.
+            </p>
+          </button>
+        </section>
+
+        <section data-testid="stage-4" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:px-16 lg:py-24">
+          <button type="button" data-stage-target="4" aria-pressed="false" class="stage-button text-left">
+            <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 4 of 6</span>
+            <h2 class="mt-2 text-3xl font-bold text-slate-900">Picking up oxygen</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600">
+              Inside the lungs, carbon dioxide is dropped off and fresh oxygen is picked up. Newly oxygenated blood
+              returns via the pulmonary veins into the <strong>left atrium</strong> — the only vein in the body
+              carrying oxygen-rich blood.
+            </p>
+          </button>
+        </section>
+
+        <section data-testid="stage-5" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:px-16 lg:py-24">
+          <button type="button" data-stage-target="5" aria-pressed="false" class="stage-button text-left">
+            <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 5 of 6</span>
+            <h2 class="mt-2 text-3xl font-bold text-slate-900">Into the strongest chamber</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600">
+              The left atrium contracts, pushing blood through the <strong>mitral valve</strong> into the
+              <strong>left ventricle</strong> — the thickest, most muscular chamber, built to push blood around the
+              entire body.
+            </p>
+          </button>
+        </section>
+
+        <section data-testid="stage-6" class="flex min-h-[65vh] items-start px-6 py-10 lg:min-h-screen lg:items-center lg:px-16 lg:py-24">
+          <button type="button" data-stage-target="6" aria-pressed="false" class="stage-button text-left">
+            <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 6 of 6</span>
+            <h2 class="mt-2 text-3xl font-bold text-slate-900">Out to the body</h2>
+            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600">
+              One last valve — the <strong>aortic valve</strong> — opens into the aorta, the body's largest artery.
+              From there the oxygenated blood branches out to every organ, and the cycle begins again.
+            </p>
+          </button>
+        </section>
+      </div>
     </main>
     <script type="module" src="./main.ts"></script>
   </body>

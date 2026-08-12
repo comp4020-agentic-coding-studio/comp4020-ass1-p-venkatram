@@ -161,3 +161,22 @@ catching you out, a fact about the stack the agent keeps getting wrong --- write
 it down here. Growing this file is the work of harness engineering, and the gap
 between this boilerplate and your own version is part of what your prototype
 says about the developer you're becoming.
+
+## Assignment 1: the blood-flow explainer
+
+- **Styling is Tailwind CSS v4**, not the template's hand-written CSS ---
+  `@tailwindcss/vite` is registered in `vite.config.ts`, and `styles.css` is
+  just `@import "tailwindcss";` plus the handful of things Tailwind can't
+  express as utilities (the `offset-path` blood-cell animation, and its
+  `prefers-reduced-motion` override). Everything else in `index.html` should
+  stay Tailwind utility classes --- don't add a second stylesheet.
+- **The one interaction**: `[data-testid="diagram"]`'s `data-active-stage`
+  attribute is the contract. Clicking a stage button (`[data-stage-target]`)
+  or scrolling one into view both funnel through the single
+  `setActiveStage()` function in `main.ts` --- if you add a new way to change
+  the active stage, route it through that function too, don't duplicate the
+  highlight/caption/aria-pressed logic inline.
+- `spec/blood-flow.test.ts` only checks the static markup this depends on
+  (jsdom doesn't run scroll or `IntersectionObserver`); verify the live
+  behaviour by hand in the browser at both marking viewports, same as the
+  spec's own "judged by a person" carve-out.

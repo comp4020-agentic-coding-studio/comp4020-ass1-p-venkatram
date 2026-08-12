@@ -1,16 +1,134 @@
-body {
-  margin: 0;
-  padding: 2rem;
-  font-family: system-ui, sans-serif;
-  line-height: 1.6;
-  color: #1a1a1a;
+@import "tailwindcss";
+
+/* Two typefaces, one per side: the diagram is deliberately playful, the
+   explanatory text next to it stays legible. Declared as theme tokens (not
+   raw CSS) so they're still ordinary Tailwind utilities (`font-diagram`,
+   `font-lexend`) on the elements that use them. */
+@theme {
+  --font-diagram: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
+  --font-lexend: "Lexend", sans-serif;
 }
 
-main {
-  max-width: 40rem;
-  margin: 0 auto;
+/* Tailwind has no utility for animating along an arbitrary SVG path, so the
+   blood-cell motion is hand-written. offset-path/offset-distance is
+   Chrome-first, which matches this course's marking browser. */
+.flow-path path {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-a {
-  color: #0b5fff;
+.blood-cell {
+  offset-distance: 0%;
+  opacity: 0;
+}
+
+.blood-cell:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.blood-cell:nth-child(3) {
+  animation-delay: 1.6s;
+}
+
+.flow-path.is-active path {
+  opacity: 1;
+}
+
+[data-active-stage] .flow-path.is-active .blood-cell {
+  opacity: 1;
+  animation: flow 2.4s linear infinite;
+}
+
+@keyframes flow {
+  from {
+    offset-distance: 0%;
+  }
+
+  to {
+    offset-distance: 100%;
+  }
+}
+
+/* Chamber contraction: each chamber scales from its own centre, driven purely
+   by the diagram's data-active-stage attribute, so this needs no JS. */
+#ra-chamber,
+#rv-chamber,
+#la-chamber {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  transition: transform 0.3s ease;
+}
+
+#diagram[data-active-stage="2"] #ra-chamber,
+#diagram[data-active-stage="3"] #rv-chamber,
+#diagram[data-active-stage="5"] #la-chamber {
+  animation: chamber-contract 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes chamber-contract {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0.88);
+  }
+}
+
+/* Valve flaps: two hinged lines that lie flat (closed) at rest and rotate
+   open only while the chamber behind them is contracting. */
+.valve-flap {
+  stroke: var(--color-slate-600);
+  stroke-width: 3;
+  transition: transform 0.4s ease;
+}
+
+#diagram[data-active-stage="2"] #tricuspid-flap-left {
+  transform: rotate(35deg);
+}
+
+#diagram[data-active-stage="2"] #tricuspid-flap-right {
+  transform: rotate(-35deg);
+}
+
+#diagram[data-active-stage="3"] #pulmonary-flap-left {
+  transform: rotate(35deg);
+}
+
+#diagram[data-active-stage="3"] #pulmonary-flap-right {
+  transform: rotate(-35deg);
+}
+
+#diagram[data-active-stage="5"] #mitral-flap-left {
+  transform: rotate(35deg);
+}
+
+#diagram[data-active-stage="5"] #mitral-flap-right {
+  transform: rotate(-35deg);
+}
+
+/* The tricuspid "blocked" glyph marks the direction the valve won't let
+   blood travel. It has nothing to explain until the right atrium contracts,
+   so it fades in next to that stage's flow line and then stays put — once
+   the mechanism has been introduced it remains a permanent annotation. */
+.block-glyph {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#diagram:not([data-active-stage="1"]) #tricuspid-block {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-active-stage] .flow-path.is-active .blood-cell {
+    animation: none;
+    offset-distance: 50%;
+  }
+
+  #ra-chamber,
+  #rv-chamber,
+  #la-chamber {
+    animation: none;
+  }
 }
