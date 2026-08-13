@@ -54,7 +54,7 @@
                 class="fill-none stroke-sky-300"
                 stroke-width="12"
               />
-              <path d="M310,145 Q260,190 240,215" class="fill-none stroke-rose-300" stroke-width="12" />
+              <path d="M310,145 Q285,180 270,220" class="fill-none stroke-rose-300" stroke-width="12" />
               <!-- redrawn over the vein's start so it tucks behind the lung,
                    like every other vessel, instead of floating on top with a
                    visible cap poking into the lung -->
@@ -162,11 +162,15 @@
               </g>
 
               <g id="flow-4" class="flow-path" data-color="rose">
-                <path d="M310,155 Q260,190 270,220" class="stroke-amber-500" stroke-width="6" fill="none" />
+                <path d="M310,145 Q285,180 270,220" class="stroke-amber-500" stroke-width="6" fill="none" />
                 <circle class="blood-cell fill-rose-600" r="6" />
                 <circle class="blood-cell fill-rose-600" r="6" />
                 <circle class="blood-cell fill-rose-600" r="6" />
               </g>
+              <!-- redrawn over flow-4's start for the same reason as the resting
+                   vein above: tucks the highlight behind the lung instead of
+                   letting it poke out past the vessel it's supposed to trace -->
+              <ellipse cx="310" cy="95" rx="60" ry="55" class="fill-slate-200 stroke-slate-400" stroke-width="2.5" />
 
               <g id="flow-5" class="flow-path" data-color="rose">
                 <path d="M270,220 L270,395" class="stroke-amber-500" stroke-width="6" fill="none" />
