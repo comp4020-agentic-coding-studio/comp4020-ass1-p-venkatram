@@ -10,7 +10,7 @@ import { describe, expect, it } from "vitest";
 // this only asserts the static contract the interaction depends on; the
 // live behaviour (captions updating, blood cells animating) is checked by
 // hand in the browser at both marking viewports.
-const doc = new JSDOM(readFileSync(resolve("dist/index.html"), "utf8")).window.document;
+const doc = new JSDOM(readFileSync(resolve("dist/how-it-works.html"), "utf8")).window.document;
 
 const STAGE_IDS = ["1", "2", "3", "4", "5", "6"];
 

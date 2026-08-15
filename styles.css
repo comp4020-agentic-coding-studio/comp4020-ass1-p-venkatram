@@ -192,6 +192,42 @@
   }
 }
 
+/* Landing page: the heart pulses at rest to invite the click, then the
+   idle animation hands off to a plain CSS transition (toggled by
+   landing.ts adding .zooming-to-heart to <body>) that scales it up to fill
+   the screen while the body outline fades out from underneath it. */
+#heart-link {
+  transform-origin: center;
+  transition: transform 0.6s cubic-bezier(0.32, 0, 0.2, 1);
+  animation: heartbeat 2.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  20% {
+    transform: scale(1.06);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+.zooming-to-heart #heart-link {
+  animation: none;
+  transform: scale(11);
+  z-index: 30;
+}
+
+.zooming-to-heart #body-outline-svg {
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-active-stage] .flow-path.is-active .blood-cell {
     animation: none;
@@ -206,5 +242,10 @@
 
   .scroll-hint-arrow {
     animation: none;
+  }
+
+  #heart-link {
+    animation: none;
+    transition: none;
   }
 }

@@ -3,326 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How blood flows through the heart</title>
+    <title>The heart, in the body</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="bg-slate-50 font-diagram text-slate-900">
-    <header class="fixed inset-x-0 top-0 z-20 hidden border-b border-slate-200 bg-white/80 backdrop-blur lg:block">
-      <nav aria-label="Primary" class="grid grid-cols-3 items-center py-3">
-        <p class="text-center text-lg font-bold text-slate-800">Flow of Blood</p>
-        <p class="text-center text-lg font-bold text-slate-800">How it Works</p>
-        <p class="text-center text-lg font-bold text-slate-800">How to remember</p>
-      </nav>
-    </header>
+    <main class="relative flex h-screen w-screen items-center justify-center overflow-hidden">
+      <h1 class="sr-only">The heart, in the body</h1>
 
-    <main class="lg:grid lg:grid-cols-3 lg:pt-12">
-      <h1 class="sr-only">How blood flows through the heart</h1>
-
-      <section
-        aria-labelledby="heading-flow"
-        class="px-6 py-10 lg:col-start-1 lg:h-[calc(100vh-3rem)] lg:px-6 lg:py-8 lg:sticky lg:top-12"
-      >
-        <h2 id="heading-flow" class="text-lg font-bold text-slate-800 lg:sr-only">Flow of Blood</h2>
-        <div
-          id="diagram"
-          data-testid="diagram"
-          data-active-stage="1"
-          class="relative flex h-[45vh] items-center justify-center overflow-hidden pb-6 lg:h-full lg:pb-4"
+      <div id="figure" class="relative aspect-[320/760] h-full max-h-[92vh]">
+        <svg
+          id="body-outline-svg"
+          viewBox="0 0 320 760"
+          aria-hidden="true"
+          class="absolute inset-0 h-full w-full fill-none stroke-slate-400"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
         >
-          <svg
-            viewBox="0 -12 420 584"
-            role="img"
-            aria-labelledby="diagram-title"
-            aria-describedby="diagram-caption"
-            class="font-diagram h-full max-w-full px-6 py-4"
+          <circle cx="160" cy="58" r="46" />
+          <path d="M148,102 L148,124 M172,102 L172,124" />
+          <path
+            d="M120,125 Q100,130 95,160 L88,300 Q85,340 100,375 L104,420 Q100,450 108,470
+               L212,470 Q220,450 216,420 L220,375 Q235,340 232,300 L225,160 Q220,130 200,125 Z"
+          />
+          <path d="M112,135 Q70,150 55,230 L48,360 Q46,395 60,410" />
+          <path d="M208,135 Q250,150 265,230 L272,360 Q274,395 260,410" />
+          <path d="M112,468 L100,600 Q95,650 90,700" />
+          <path d="M208,468 L220,600 Q225,650 230,700" />
+          <path d="M75,700 L104,700" />
+          <path d="M216,700 L245,700" />
+        </svg>
+
+        <nav aria-label="Primary" class="contents">
+          <a
+            href="heart.html"
+            id="heart-link"
+            aria-label="View the heart"
+            class="absolute block"
+            style="left: 29%; top: 21%; width: 42%; height: 34%"
           >
-            <title id="diagram-title">Diagram of the heart, its four chambers, and the lungs</title>
-
-            <g transform="skewY(-3)" stroke-linecap="round" stroke-linejoin="round">
-              <!-- lungs -->
-              <ellipse cx="110" cy="95" rx="60" ry="55" class="fill-slate-200 stroke-slate-400" stroke-width="2.5" />
-              <ellipse cx="310" cy="95" rx="60" ry="55" class="fill-slate-200 stroke-slate-400" stroke-width="2.5" />
-              <text x="210" y="50" text-anchor="middle" class="fill-slate-600 text-[13px] font-semibold uppercase tracking-widest">
-                Lungs
-              </text>
-
-              <!-- vessels (resting state, drawn under the flow paths) -->
-              <path d="M160,0 L160,120 Q160,160 150,175" class="fill-none stroke-sky-300" stroke-width="14" />
-              <path d="M50,420 L50,320 Q50,260 105,245" class="fill-none stroke-sky-300" stroke-width="14" />
-              <path
-                d="M190,312 Q208,300 208,260 L208,170 Q208,110 160,90 Q120,75 100,110 L100,145"
-                class="fill-none stroke-sky-300"
-                stroke-width="12"
-              />
-              <path d="M310,145 Q285,180 270,220" class="fill-none stroke-rose-300" stroke-width="12" />
-              <!-- redrawn over the vein's start so it tucks behind the lung,
-                   like every other vessel, instead of floating on top with a
-                   visible cap poking into the lung -->
-              <ellipse cx="310" cy="95" rx="60" ry="55" class="fill-slate-200 stroke-slate-400" stroke-width="2.5" />
-              <path
-                d="M230,312 Q212,300 212,260 L212,180 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
-                class="fill-none stroke-rose-300"
-                stroke-width="14"
-              />
-              <!-- AV valve-to-ventricle ducts: drawn here (under the chambers,
-                   like every other vessel) so the chambers paint over their far
-                   ends instead of the duct floating on top with a visible cap -->
-              <path d="M150,282 L150,311" class="fill-none stroke-sky-300" stroke-width="12" />
-              <path d="M270,282 L270,313" class="fill-none stroke-rose-300" stroke-width="12" />
-
-              <!-- chambers -->
-              <ellipse id="ra-chamber" cx="150" cy="220" rx="55" ry="50" class="fill-sky-100 stroke-sky-600" stroke-width="3" />
-
-              <ellipse id="la-chamber" cx="270" cy="220" rx="55" ry="50" class="fill-rose-100 stroke-rose-600" stroke-width="3" />
-
-              <ellipse id="rv-chamber" cx="150" cy="385" rx="65" ry="80" class="fill-sky-200 stroke-sky-700" stroke-width="3" />
-
-              <ellipse cx="270" cy="395" rx="72" ry="88" class="fill-rose-200 stroke-rose-700" stroke-width="3" />
-
-              <!-- valves: plain rect looks closed; two hinged flaps lie flat over it
-                   at rest and swing open while the chamber behind them contracts -->
-              <g id="tricuspid-valve">
-                <rect x="135" y="268" width="30" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
-                <line id="tricuspid-flap-left" x1="135" y1="275" x2="150" y2="275" class="valve-flap" style="transform-origin: 135px 275px" />
-                <line id="tricuspid-flap-right" x1="165" y1="275" x2="150" y2="275" class="valve-flap" style="transform-origin: 165px 275px" />
-              </g>
-              <g id="tricuspid-block" class="block-glyph" transform="translate(150,248) scale(0.8) translate(-172,-250)">
-                <line x1="172" y1="260" x2="172" y2="244" class="stroke-rose-500" stroke-width="3" />
-                <path d="M166,250 L172,242 L178,250" class="fill-none stroke-rose-500" stroke-width="3" />
-                <line x1="163" y1="256" x2="181" y2="246" class="stroke-rose-500" stroke-width="3" />
-              </g>
-
-              <g id="mitral-valve">
-                <rect x="255" y="268" width="30" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
-                <line id="mitral-flap-left" x1="255" y1="275" x2="270" y2="275" class="valve-flap" style="transform-origin: 255px 275px" />
-                <line id="mitral-flap-right" x1="285" y1="275" x2="270" y2="275" class="valve-flap" style="transform-origin: 285px 275px" />
-              </g>
-              <text x="300" y="278" class="fill-rose-600 text-[9px] font-semibold uppercase tracking-widest">
-                <tspan x="300" dy="0">Mitral</tspan>
-                <tspan x="300" dy="11">valve</tspan>
-              </text>
-
-              <g id="pulmonary-valve">
-                <rect x="177" y="305" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
-                <line id="pulmonary-flap-left" x1="177" y1="312" x2="190" y2="312" class="valve-flap" style="transform-origin: 177px 312px" />
-                <line id="pulmonary-flap-right" x1="203" y1="312" x2="190" y2="312" class="valve-flap" style="transform-origin: 203px 312px" />
-              </g>
-
-              <g id="aortic-valve">
-                <rect x="217" y="305" width="26" height="14" rx="4" class="fill-white stroke-slate-500" stroke-width="2" />
-                <line id="aortic-flap-left" x1="217" y1="312" x2="230" y2="312" class="valve-flap" style="transform-origin: 217px 312px" />
-                <line id="aortic-flap-right" x1="243" y1="312" x2="230" y2="312" class="valve-flap" style="transform-origin: 243px 312px" />
-              </g>
-
-              <!-- labels -->
-              <text x="55" y="10" class="fill-sky-600 text-[11px] font-semibold uppercase tracking-widest">
-                <tspan x="55" dy="0">Superior</tspan>
-                <tspan x="55" dy="12">vena cava</tspan>
-              </text>
-              <text x="5" y="465" class="fill-sky-600 text-[11px] font-semibold uppercase tracking-widest">
-                <tspan x="5" dy="0">Inferior</tspan>
-                <tspan x="5" dy="12">vena cava</tspan>
-              </text>
-              <text x="335" y="30" class="fill-rose-600 text-[11px] font-semibold uppercase tracking-widest">Aorta</text>
-
-              <!-- flow routes: hidden until their stage is active -->
-              <g id="flow-1" class="flow-path" data-color="sky">
-                <g class="flow-branch">
-                  <path d="M160,0 L160,120 Q160,160 150,175 L150,220" class="stroke-amber-500" stroke-width="6" fill="none" />
-                  <circle class="blood-cell fill-sky-600" r="6" />
-                  <circle class="blood-cell fill-sky-600" r="6" />
-                  <circle class="blood-cell fill-sky-600" r="6" />
-                </g>
-                <g class="flow-branch">
-                  <path d="M50,420 L50,320 Q50,260 105,245 L150,220" class="stroke-amber-500" stroke-width="6" fill="none" />
-                  <circle class="blood-cell fill-sky-600" r="6" />
-                  <circle class="blood-cell fill-sky-600" r="6" />
-                  <circle class="blood-cell fill-sky-600" r="6" />
-                </g>
-              </g>
-
-              <g id="flow-2" class="flow-path" data-color="sky">
-                <path d="M150,220 L150,385" class="stroke-amber-500" stroke-width="6" fill="none" />
-                <circle class="blood-cell fill-sky-600" r="6" />
-                <circle class="blood-cell fill-sky-600" r="6" />
-                <circle class="blood-cell fill-sky-600" r="6" />
-              </g>
-
-              <g id="flow-3" class="flow-path" data-color="sky">
-                <path
-                  d="M150,385 L150,345 Q165,320 190,312 Q208,300 208,260 L208,170 Q208,110 160,90 Q120,75 100,110 L100,145"
-                  class="stroke-amber-500"
-                  stroke-width="6"
-                  fill="none"
-
-                />
-                <circle class="blood-cell fill-sky-600" r="6" />
-                <circle class="blood-cell fill-sky-600" r="6" />
-                <circle class="blood-cell fill-sky-600" r="6" />
-              </g>
-
-              <g id="flow-4" class="flow-path" data-color="rose">
-                <path d="M310,145 Q285,180 270,220" class="stroke-amber-500" stroke-width="6" fill="none" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-              </g>
-              <!-- redrawn over flow-4's start for the same reason as the resting
-                   vein above: tucks the highlight behind the lung instead of
-                   letting it poke out past the vessel it's supposed to trace -->
-              <ellipse cx="310" cy="95" rx="60" ry="55" class="fill-slate-200 stroke-slate-400" stroke-width="2.5" />
-
-              <g id="flow-5" class="flow-path" data-color="rose">
-                <path d="M270,220 L270,395" class="stroke-amber-500" stroke-width="6" fill="none" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-              </g>
-
-              <g id="flow-6" class="flow-path" data-color="rose">
-                <path
-                  d="M270,395 L270,345 Q250,320 230,312 Q212,300 212,260 L212,180 C270,150 300,95 335,85 C375,75 380,115 370,150 L370,480"
-                  class="stroke-amber-500"
-                  stroke-width="6"
-                  fill="none"
-
-                />
-                <circle class="blood-cell fill-rose-600" r="6" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-                <circle class="blood-cell fill-rose-600" r="6" />
-              </g>
-
-              <!-- chamber labels: drawn last so they stay readable on top of the
-                   active flow path, which terminates at each chamber's centre -->
-              <text x="150" y="225" text-anchor="middle" class="fill-sky-700 text-base font-bold">RA</text>
-              <text x="270" y="225" text-anchor="middle" class="fill-rose-700 text-base font-bold">LA</text>
-              <text x="150" y="390" text-anchor="middle" class="fill-sky-800 text-base font-bold">RV</text>
-              <text x="270" y="400" text-anchor="middle" class="fill-rose-800 text-base font-bold">LV</text>
-            </g>
-          </svg>
-
-          <p
-            id="diagram-caption"
-            data-testid="caption"
-            role="status"
-            aria-live="polite"
-            class="absolute bottom-3 left-1/2 w-[92%] -translate-x-1/2 rounded-lg border-t-4 border-amber-400 bg-white/90 px-3 py-2 text-center text-sm text-slate-700 shadow-sm sm:w-96"
-          >
-            Deoxygenated blood returns from the body through the venae cavae into the right atrium.
-          </p>
-        </div>
-      </section>
-
-      <section aria-labelledby="heading-how-it-works" class="lg:col-start-2">
-        <h2 id="heading-how-it-works" class="px-6 pt-8 text-lg font-bold text-slate-800 lg:sr-only">How it Works</h2>
-
-        <div class="flex h-[90vh] flex-col lg:h-[calc(90vh-3rem)]">
-          <p class="flex shrink-0 flex-col items-center gap-1 bg-slate-50 px-6 py-3 text-sm font-bold text-sky-600 lg:sticky lg:top-12 lg:z-10">
-            <span>Scroll to move through each stage</span>
-            <span aria-hidden="true" class="scroll-hint-arrow text-4xl [text-shadow:3px_3px_0_var(--color-sky-800)]">↓</span>
-          </p>
-
-          <section data-testid="stage-1" class="flex flex-1 items-center justify-center px-6 py-10 lg:px-16">
-            <button type="button" data-stage-target="1" aria-pressed="true" class="stage-button text-center">
-              <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 1 of 6</span>
-              <h3 class="mt-2 text-3xl font-bold text-slate-900">Blood comes home</h3>
-              <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
-                Every cell in your body hands its used, oxygen-poor blood back to two big veins — the superior and
-                inferior venae cavae — which empty into the <strong>right atrium</strong>, the heart's receiving
-                chamber.
-              </p>
-            </button>
-          </section>
-        </div>
-
-        <section data-testid="stage-2" class="flex min-h-[65vh] items-center justify-center px-6 py-10 lg:min-h-screen lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="2" aria-pressed="false" class="stage-button text-center">
-            <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 2 of 6</span>
-            <h3 class="mt-2 text-3xl font-bold text-slate-900">Into the right ventricle</h3>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
-              The right atrium contracts, pushing blood through the <strong>tricuspid valve</strong> into the
-              <strong>right ventricle</strong> below it — a one-way door that stops blood sliding back up.
-            </p>
-          </button>
-        </section>
-
-        <section data-testid="stage-3" class="flex min-h-[65vh] items-center justify-center px-6 py-10 lg:min-h-screen lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="3" aria-pressed="false" class="stage-button text-center">
-            <span class="text-xs font-semibold uppercase tracking-widest text-sky-600">Stage 3 of 6</span>
-            <h3 class="mt-2 text-3xl font-bold text-slate-900">Off to the lungs</h3>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
-              The right ventricle squeezes through the <strong>pulmonary valve</strong> into the pulmonary artery,
-              which carries the blood to the <strong>lungs</strong> — the only vessel in the body carrying
-              oxygen-poor blood away from the heart.
-            </p>
-          </button>
-        </section>
-
-        <section data-testid="stage-4" class="flex min-h-[65vh] items-center justify-center px-6 py-10 lg:min-h-screen lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="4" aria-pressed="false" class="stage-button text-center">
-            <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 4 of 6</span>
-            <h3 class="mt-2 text-3xl font-bold text-slate-900">Picking up oxygen</h3>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
-              Inside the lungs, carbon dioxide is dropped off and fresh oxygen is picked up. Newly oxygenated blood
-              returns via the pulmonary veins into the <strong>left atrium</strong> — the only vein in the body
-              carrying oxygen-rich blood.
-            </p>
-          </button>
-        </section>
-
-        <section data-testid="stage-5" class="flex min-h-[65vh] items-center justify-center px-6 py-10 lg:min-h-screen lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="5" aria-pressed="false" class="stage-button text-center">
-            <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 5 of 6</span>
-            <h3 class="mt-2 text-3xl font-bold text-slate-900">Into the strongest chamber</h3>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
-              The left atrium contracts, pushing blood through the <strong>mitral valve</strong> into the
-              <strong>left ventricle</strong> — the thickest, most muscular chamber, built to push blood around the
-              entire body.
-            </p>
-          </button>
-        </section>
-
-        <section data-testid="stage-6" class="flex min-h-[65vh] items-center justify-center px-6 py-10 lg:min-h-screen lg:px-16 lg:py-24">
-          <button type="button" data-stage-target="6" aria-pressed="false" class="stage-button text-center">
-            <span class="text-xs font-semibold uppercase tracking-widest text-rose-600">Stage 6 of 6</span>
-            <h3 class="mt-2 text-3xl font-bold text-slate-900">Out to the body</h3>
-            <p class="mt-4 max-w-md text-lg leading-relaxed text-slate-600 lg:max-w-md">
-              One last valve — the <strong>aortic valve</strong> — opens into the aorta, the body's largest artery.
-              From there the oxygenated blood branches out to every organ, and the cycle begins again.
-            </p>
-          </button>
-        </section>
-      </section>
-
-      <section
-        aria-labelledby="heading-remember"
-        class="flex flex-col justify-center px-6 py-12 lg:col-start-3 lg:h-[calc(100vh-3rem)] lg:px-6 lg:py-8 lg:sticky lg:top-12"
-      >
-        <h2 id="heading-remember" class="text-lg font-bold text-slate-800 lg:sr-only">How to remember</h2>
-
-        <div class="mt-4 max-w-full rounded-lg border border-amber-200 bg-amber-50 px-4 py-2 text-sm text-slate-700">
-          <p class="font-semibold text-amber-700">Memory aid: R&middot;T&middot;P&middot;L&middot;M&middot;A</p>
-          <p class="mt-1">
-            &ldquo;Robots Toss Purple Lemons, Making Applesauce.&rdquo; &mdash; Right atrium, Tricuspid valve,
-            Pulmonary valve, Lungs, Mitral valve, Aorta.
-          </p>
-        </div>
-
-        <div id="flowchart" data-active-stage="1" class="mx-auto mt-4 flex max-w-xs flex-col items-stretch gap-1 font-diagram">
-          <div class="flow-node" data-flow-stage="1">Right atrium</div>
-          <div aria-hidden="true" class="flow-arrow">&darr;</div>
-          <div class="flow-node" data-flow-stage="2">Tricuspid valve</div>
-          <div aria-hidden="true" class="flow-arrow">&darr;</div>
-          <div class="flow-node" data-flow-stage="3">Pulmonary valve</div>
-          <div aria-hidden="true" class="flow-arrow">&darr;</div>
-          <div class="flow-node" data-flow-stage="4">Lungs</div>
-          <div aria-hidden="true" class="flow-arrow">&darr;</div>
-          <div class="flow-node" data-flow-stage="5">Mitral valve</div>
-          <div aria-hidden="true" class="flow-arrow">&darr;</div>
-          <div class="flow-node" data-flow-stage="6">Aorta</div>
-        </div>
-      </section>
+            <svg viewBox="95 195 570 610" class="h-full w-full">
+              <path d="M 219.069,653.065 L 211.021,766.978 C 214.646,781.479 225.522,792.354 242.613,793.39 C 259.703,794.427 269.025,783.551 276.276,774.747 L 283.807,695.533" transform="translate(-10.61289,-3.411667)" style="font-size:12px;fill:#9999ff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="inferior_vena_cava" class="transition-opacity duration-300"/>
+              <path d="M 132.938,385.437 C 154.176,385.086 288.568,393.596 348.881,392.036 C 409.194,390.476 553.266,372.917 577.703,376.037 L 578.223,424.912 C 555.866,425.952 510.582,427.392 500.185,448.71 C 485.626,482.506 409.714,435.192 370.719,436.232 C 327.046,437.38 162.372,439.453 133.458,435.871 C 127.813,430.433 120.845,424.463 121.499,410.394 C 121.647,394.289 127.218,390.117 132.938,385.437 z " transform="translate(6.239319,58.23346)" style="font-size:12px;fill:#ffcc99;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="pulmonary_vein" class="transition-opacity duration-300"/>
+              <path d="M 508.573,484.232 C 518.413,485.267 562.952,567.613 560.362,633.903 C 557.773,700.194 544.307,742.661 523.074,735.928 C 501.84,729.196 449.532,633.386 422.084,603.348 C 394.636,573.31 357.865,535.503 357.865,535.503 L 508.573,484.232 z " style="font-size:12px;fill:#7f7fe6;fill-rule:evenodd;stroke:#000000;stroke-width:1.25" data-part="left_ventricle" class="transition-opacity duration-300"/>
+              <path d="M 154.739,383.037 C 175.977,382.686 315.605,394.116 375.918,392.556 C 436.231,390.996 538.14,377.997 562.577,381.117 L 563.097,429.992 C 540.74,431.032 510.582,427.392 500.185,448.71 C 485.626,482.506 409.714,435.192 370.719,436.232 C 327.046,437.38 184.173,437.053 155.259,433.471 C 149.614,426.993 143.166,424.143 143.3,407.994 C 142.914,391.893 149.539,388.757 154.739,383.037 z " style="font-size:12px;fill:#ffcc99;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="pulmonary_vein" class="transition-opacity duration-300"/>
+              <path d="M 368.742,443.317 C 376.4,402.472 446.107,397.052 470.766,412.245 C 504.111,432.788 523.074,494.589 523.074,494.589 C 523.074,494.589 501.18,491.901 489.929,508.055 C 480.981,520.903 480.089,550.522 480.089,550.522 C 480.089,550.522 472.838,521.52 457.301,516.341 C 441.765,511.162 428.817,516.859 417.941,520.484 C 407.583,511.162 363.971,468.762 368.742,443.317 z " style="font-size:12px;fill:#b3b3ff;fill-rule:evenodd;stroke-width:1pt" data-part="left_atrium" class="transition-opacity duration-300"/>
+              <path d="M 353.723,537.057 C 394.118,562.434 416.905,602.312 445.907,641.672 C 474.91,681.032 511.162,736.964 500.286,746.804 C 489.411,756.644 406.862,752.239 339.739,729.196 C 286.344,710.881 240.821,665.495 240.821,665.495 L 353.723,537.057 z " style="font-size:12px;fill:#7f7fe6;fill-rule:evenodd;stroke-width:1.25" data-part="right_ventricle" class="transition-opacity duration-300"/>
+              <path d="M 215.962,423.12 C 216.48,438.657 189.079,547.46 192.139,576.417 C 198.872,640.636 251.179,682.068 260.501,687.247 C 262.573,680.514 263.609,647.886 282.253,639.082 C 300.897,630.278 324.202,643.225 324.202,643.225 C 324.202,643.225 309.184,624.064 309.184,606.972 C 309.184,589.883 322.648,576.935 328.345,571.238 C 329.381,557.255 332.488,513.752 321.612,482.678 C 310.737,451.604 278.11,413.798 278.11,413.798 L 215.962,423.12 z " style="font-size:12px;fill:#b3b3ff;fill-rule:evenodd;stroke-width:1pt" data-part="right_atrium" class="transition-opacity duration-300"/>
+              <path d="M 296.236,340.775 C 263.091,339.739 177.778,328.83 160.007,326.794 C 153.594,328.846 147.768,335.896 147.528,349.587 C 147.34,360.736 154.114,365.649 160.007,370.301 C 160.007,370.301 263.608,382.206 295.2,386.349" transform="translate(-0.517883,0.517853)" style="font-size:12px;fill:#e5b3ff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="pulmonary_artery" class="transition-opacity duration-300"/>
+              <path d="M 434.002,525.693 C 410.223,485.324 369.24,470.051 341.811,400.333 C 326.882,361.657 362.68,306.047 401.887,334.042 C 425.817,351.499 409.611,392.825 414.272,390.754 L 468.371,386.129 C 468.371,380.95 469.73,372.884 456.783,320.577 C 448.471,287.661 430.888,284.842 435.031,268.787 C 439.174,252.732 451.086,237.714 451.086,237.714 L 424.156,216.998 C 424.156,216.998 403.958,265.162 395.671,264.126 C 387.385,263.09 399.815,215.962 399.815,215.962 L 362.526,212.855 C 362.526,212.855 367.706,262.055 356.83,269.824 C 345.954,277.592 322.131,220.623 322.131,220.623 L 293.646,237.714 C 293.646,237.714 313.844,261.536 309.183,283.288 C 304.522,305.04 272.931,325.756 276.556,400.333 C 279.349,457.383 325.739,497.517 343.365,520.485 C 360.455,542.236 399.232,587.682 411.254,581.659 C 406.523,557.756 414.725,531.305 434.002,525.693 z " style="font-size:12px;fill:#ff7f7f;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="aorta" class="transition-opacity duration-300"/>
+              <path d="M 393.806,563.203 C 393.806,576.12 376.123,577.424 354.762,577.939 C 336.281,578.385 326.183,570.688 326.183,557.772 C 326.183,544.857 335.587,536.124 359.736,536.124 C 382.193,536.124 393.806,550.289 393.806,563.203 z " transform="matrix(0.578761,-0.718335,1.263224,1.017777,-506.8972,229.5155)" style="font-size:12px;fill:#cc6666;fill-rule:evenodd;stroke:#000000;stroke-width:2.04364991"/>
+              <path d="M 208.712,427.781 C 214.408,409.137 204.338,245.12 204.338,245.12 C 204.338,245.12 210.553,230.1 235.93,231.136 C 261.306,232.172 265.968,248.745 265.968,248.745 L 279.145,422.084" style="font-size:12px;fill:#9999ff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="superior_vena_cava" class="transition-opacity duration-300"/>
+              <ellipse cx="250.87192" cy="434.41135" rx="31.456482" ry="21.057648" transform="matrix(1.049425,-0.353733,0.378566,1.123099,-181.7923,31.88649)" style="font-size:12px;fill:#7f7fcc;fill-rule:evenodd;stroke:#000000;stroke-width:2.1821599"/>
+              <path d="M 389.377,422.836 L 393.817,404.594 C 417.574,392.693 442.843,393.36 460.113,399.515 C 513.247,419.181 518.56,475.733 534.101,489.889 C 602.785,553.949 615.862,742.02 560.662,765.287 C 445.615,813.474 252.131,730.14 202.022,647.172 C 149.112,560.772 203.302,504.387 208.806,425.868 L 214.21,447.36 C 215.758,530.82 193.679,509.553 206.785,590.738 C 216.978,629.328 247.972,674.291 305.079,699.226 C 379.711,732.765 476.186,748.01 485.652,736.36 C 495.117,724.711 441.238,682.48 426.675,648.259 C 412.113,614.037 412.113,600.931 402.647,590.738 C 393.182,580.544 383.923,565.046 375.604,557.766 L 375.606,543.103 C 389.125,557.661 413.963,588.784 430.316,599.475 C 449.974,611.853 476.789,641.332 487.108,665.005 C 500.214,693.402 517.689,725.439 529.339,715.974 C 540.989,706.508 548.998,665.734 540.989,627.873 C 536.041,605.385 519.348,588.817 513.319,549.964 C 506.767,509.917 514.777,493.171 511.864,482.249 C 508.952,471.328 492.205,430.553 463.808,415.991 C 436.963,403.601 410.492,412.642 389.377,422.836 z " style="font-size:12px;opacity:0.98999999;fill:#ff7fcc;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="heart" class="transition-opacity duration-300"/>
+              <path d="M 385.834,569.669 C 372.28,507.979 380.652,432.959 408.1,389.975 C 435.549,346.989 540.682,358.901 540.682,358.901 L 540.682,322.13 C 521.002,320.577 463.934,318.303 427.264,328.863 C 381.532,341.805 362.526,316.433 344.918,352.168 C 333.3,375.403 341.293,394.636 336.114,413.28 C 330.935,431.924 316.435,536.539 322.13,572.791 C 342.392,560.243 364.058,555.037 385.834,569.669 z " transform="translate(0,0.517853)" style="font-size:12px;fill:#e5b3ff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5" data-part="pulmonary_artery" class="transition-opacity duration-300"/>
+              <ellipse cx="548.70959" cy="341.55151" rx="13.724213" ry="19.938919" transform="matrix(0.849057,0,0,0.935062,76.60906,21.92059)" style="font-size:12px;fill:#b37fe6;fill-rule:evenodd;stroke:#000000;stroke-width:2.80576992"/>
+              <path d="M 259.451,669.164 C 249.261,666.386 251.299,642.357 275.569,632.769 C 295.829,624.246 307.805,631.729 324.963,643.168 C 308.845,641.088 300.162,635.141 281.289,645.768 C 263.891,656.083 267.386,670.807 259.451,669.164 z " style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-linejoin:round" data-part="tricuspid_valve" class="transition-opacity duration-300"/>
+              <path d="M 262.508,666.93 C 251.999,665.874 251.299,642.357 275.569,632.769 C 295.829,624.246 307.805,631.729 324.963,643.168 C 308.845,641.088 297.853,634.868 278.98,645.495 C 261.582,655.81 272.711,667.484 262.508,666.93 z " transform="matrix(0.339116,0.940745,0.940745,-0.339116,-389.9721,555.9836)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-linejoin:round" data-part="tricuspid_valve" class="transition-opacity duration-300"/>
+              <path d="M 261.127,654.534 C 250.792,652.358 258.258,640.148 274.486,632.345 C 289.046,625.201 307.805,631.729 324.963,643.168 C 308.845,641.088 295.37,635.258 280.747,642.058 C 262.485,650.754 276.341,658.257 261.127,654.534 z " transform="matrix(0.743056,0.669229,-0.669229,0.743056,670.4603,-146.6114)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-linejoin:round" data-part="mitral_valve" class="transition-opacity duration-300"/>
+              <path d="M 260.676,652.145 C 250.516,649.261 257.133,636.313 273.947,629.862 C 294.301,621.566 307.805,631.729 324.963,643.168 C 308.845,641.088 296.468,631.02 277.456,641.397 C 266.462,647.024 271.842,654.778 260.676,652.145 z " transform="matrix(-0.377592,0.925973,0.925973,0.377592,8.608642,5.534943)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-linejoin:round" data-part="mitral_valve" class="transition-opacity duration-300"/>
+              <path d="M 394.854,561.9 C 394.854,574.816 383.243,575.808 361.882,576.323 C 343.401,576.769 324.964,572.893 324.964,559.977 C 324.964,547.062 334.915,526.965 359.064,526.965 C 381.521,526.965 394.854,548.985 394.854,561.9 z " transform="matrix(0.92248,0,0,1.622222,21.03153,-346.8703)" style="font-size:12px;fill:#b37fe6;fill-rule:evenodd;stroke:#000000;stroke-width:2.04364991"/>
+              <path d="M 288.941,683.295 C 250.535,672.863 256.755,643.017 274.147,638.896 C 288.539,636.081 319.906,648.527 328.838,673.218 C 317.005,663.579 306.016,657.815 295.711,664.789 C 282.163,673.019 301.403,686.658 288.941,683.295 z " transform="matrix(0.205976,-0.612018,-0.568278,-0.254675,649.0895,906.7903)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:3.95160007;stroke-linejoin:round" data-part="pulmonary_valve" class="transition-opacity duration-300"/>
+              <path d="M 273.031,676.614 C 262.932,673.697 249.909,653.345 270.94,640.478 C 284.031,632.844 319.906,648.527 328.838,673.218 C 317.005,663.579 309.045,660.743 292.351,662.657 C 277.271,664.905 285.335,680.427 273.031,676.614 z " transform="matrix(-0.205976,-0.612018,0.568278,-0.254675,57.71602,908.3502)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:3.95160007;stroke-linejoin:round" data-part="pulmonary_valve" class="transition-opacity duration-300"/>
+              <path d="M 286.864,677.122 C 253.045,674.145 256.755,643.017 274.147,638.896 C 288.539,636.081 319.906,648.527 328.838,673.218 C 317.005,663.579 303.182,653.947 292.877,660.921 C 279.329,669.151 299.84,678.525 286.864,677.122 z " transform="matrix(-0.334885,-0.552127,-0.561135,0.27005,874.679,543.3607)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:3.95160007;stroke-linejoin:round" data-part="aortic_valve" class="transition-opacity duration-300"/>
+              <path d="M 278.697,675.236 C 265.488,673.552 256.021,653.528 277.052,640.661 C 290.143,633.027 319.906,648.527 328.838,673.218 C 317.005,663.579 313.156,659.982 296.462,661.896 C 281.382,664.144 291.534,677.294 278.697,675.236 z " transform="matrix(-0.600568,-0.237298,0.171871,-0.598548,491.3536,993.7164)" style="font-size:12px;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:3.95160007;stroke-linejoin:round" data-part="aortic_valve" class="transition-opacity duration-300"/>
+              <ellipse cx="250.87192" cy="434.41135" rx="31.456482" ry="21.057648" transform="matrix(0.717389,-0.744054,0.95079,0.71512,-339.4749,428.6958)" style="font-size:12px;fill:#7f7fcc;fill-rule:evenodd;stroke:#000000;stroke-width:2.26296997"/>
+              <ellipse cx="382.15723" cy="216.81569" rx="20.277725" ry="12.478638" transform="matrix(0.945601,7.752258e-2,-6.628828e-2,0.83062,34.12192,2.938736)" style="font-size:12px;fill:#cc6666;fill-rule:evenodd;stroke:#000000;stroke-width:2.81170011"/>
+              <ellipse cx="382.15723" cy="216.81569" rx="20.277725" ry="12.478638" transform="matrix(0.732703,0.515286,-0.464454,0.626108,260.8245,-108.0556)" style="font-size:12px;fill:#cc6666;fill-rule:evenodd;stroke:#000000;stroke-width:2.99218011"/>
+              <ellipse cx="382.15723" cy="216.81569" rx="20.277725" ry="12.478638" transform="matrix(0.740708,-0.430883,0.327749,0.711617,-47.10216,238.3697)" style="font-size:12px;fill:#cc6666;fill-rule:evenodd;stroke:#000000;stroke-width:3.05806994"/>
+              <ellipse cx="571.41608" cy="405.03461" rx="15.078308" ry="25.477158" transform="matrix(1,0,0,0.969388,-7.799148,12.65858)" style="font-size:12px;fill:#e69966;fill-rule:evenodd;stroke:#000000;stroke-width:2.53917003"/>
+              <ellipse cx="571.41608" cy="405.03461" rx="15.078308" ry="25.477158" transform="matrix(1,0,0,0.969388,11.3264,66.41187)" style="font-size:12px;fill:#e69966;fill-rule:evenodd;stroke:#000000;stroke-width:2.53917003"/>
+              <ellipse cx="571.41608" cy="405.03461" rx="15.078308" ry="25.477158" transform="matrix(1.145182,1.541563,-0.876179,0.146717,162.2962,-494.4513)" style="font-size:12px;fill:#e69966;fill-rule:evenodd;stroke:#000000;stroke-width:2.02863002"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
     </main>
-    <script type="module" src="./main.ts"></script>
+    <script type="module" src="./landing.ts"></script>
   </body>
 </html>
