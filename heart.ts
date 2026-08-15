@@ -1,56 +1,50 @@
-// The heart page's one interaction: scroll horizontally (or land a slice into
-// view any other way) and the caption below updates to describe that slice —
-// the same "single source of truth" shape as main.ts's setActiveStage, just
-// driven by scroll position instead of a data-active-stage attribute.
+// Each door layer is a pair of images (left/right half, clipped at the centre
+// seam) that hinge open around that seam as the user scrolls, like the
+// exploded-view "case opening" on ciechanow.ski/mechanical-watch — except
+// here the layers are the heart's own surface/cutaway/flow images, not a
+// synthetic 3D model.
+const MAX_ANGLE_DEG = 100;
 
-interface Slice {
-  id: string;
-  caption: string;
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
 }
 
-const SLICES: Slice[] = [
-  { id: "1", caption: "Slice 1 of 5 — Outer surface. This is the whole heart, seen from the front." },
-  {
-    id: "2",
-    caption: "Slice 2 of 5 — The right heart: right atrium, right ventricle, and the tricuspid valve between them.",
-  },
-  {
-    id: "3",
-    caption: "Slice 3 of 5 — Down the middle: the septum dividing the chambers, with all four valves in cross-section.",
-  },
-  {
-    id: "4",
-    caption: "Slice 4 of 5 — The left heart: left atrium, left ventricle, and the mitral valve between them.",
-  },
-  {
-    id: "5",
-    caption: "Slice 5 of 5 — The great vessels: the aorta, pulmonary artery, pulmonary veins, and venae cavae.",
-  },
-];
+const slices = document.querySelector<HTMLDivElement>("#slices");
+const layer1Left = document.querySelector<HTMLElement>('[data-door-layer="1"] [data-door="left"]');
+const layer1Right = document.querySelector<HTMLElement>('[data-door-layer="1"] [data-door="right"]');
+const layer2Left = document.querySelector<HTMLElement>('[data-door-layer="2"] [data-door="left"]');
+const layer2Right = document.querySelector<HTMLElement>('[data-door-layer="2"] [data-door="right"]');
 
-const caption = document.querySelector<HTMLElement>("[data-testid='caption']");
-const sections = document.querySelectorAll<HTMLElement>("[data-testid^='slice-']");
+if (slices && layer1Left && layer1Right && layer2Left && layer2Right) {
+  const update = () => {
+    const maxScroll = slices.scrollWidth - slices.clientWidth;
+    const fraction = maxScroll > 0 ? clamp(slices.scrollLeft / maxScroll, 0, 1) : 0;
 
-function setActiveSlice(id: string): void {
-  const slice = SLICES.find((s) => s.id === id);
-  if (!slice || !caption) return;
-  caption.textContent = slice.caption;
+    // First half of the scroll: the outer-surface doors swing open.
+    const layer1T = clamp(fraction / 0.5, 0, 1);
+    // Second half: the cutaway doors swing open to reveal the flow layer.
+    const layer2T = clamp((fraction - 0.5) / 0.5, 0, 1);
+
+    const angle1 = layer1T * MAX_ANGLE_DEG;
+    const angle2 = layer2T * MAX_ANGLE_DEG;
+
+    layer1Left.style.transform = `rotateY(${angle1}deg)`;
+    layer1Right.style.transform = `rotateY(${-angle1}deg)`;
+    layer2Left.style.transform = `rotateY(${angle2}deg)`;
+    layer2Right.style.transform = `rotateY(${-angle2}deg)`;
+  };
+
+  let ticking = false;
+  const onScrollOrResize = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      update();
+      ticking = false;
+    });
+  };
+
+  slices.addEventListener("scroll", onScrollOrResize, { passive: true });
+  window.addEventListener("resize", onScrollOrResize);
+  update();
 }
-
-const sliceForSection = new Map(
-  [...sections].map((section) => [section, section.dataset.testid?.replace("slice-", "")]),
-);
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    const visible = entries.filter((entry) => entry.isIntersecting);
-    if (visible.length === 0) return;
-
-    const closest = visible.reduce((best, entry) => (entry.intersectionRatio > best.intersectionRatio ? entry : best));
-    const id = sliceForSection.get(closest.target as HTMLElement);
-    if (id) setActiveSlice(id);
-  },
-  { root: document.querySelector("#slices"), threshold: 0.6 },
-);
-
-for (const section of sections) observer.observe(section);

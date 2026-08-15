@@ -232,33 +232,39 @@
   }
 }
 
-/* Speech bubble: a bold-outlined comic-style ellipse (SVG, drawn to match the
-   reference bubble shape) with a curled tail pointing back toward the
-   figure's mouth, kept at least 1cm clear of the outline itself. Tumbles in
-   and settles on load. */
-#speech-bubble {
-  aspect-ratio: 220 / 130;
-  transform-origin: 10% 60%;
-  animation: bubble-settle 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+/* Page title: fades in at the top of the page, sliding left to right. */
+#anatomy-heading {
+  animation: heading-fade-in 0.8s ease-out both;
 }
 
-@keyframes bubble-settle {
-  0% {
-    transform: translateY(-32px) rotate(-30deg);
+@keyframes heading-fade-in {
+  from {
+    transform: translateX(-40px);
     opacity: 0;
   }
 
-  55% {
-    transform: translateY(3px) rotate(8deg);
+  to {
+    transform: translateX(0);
     opacity: 1;
   }
+}
 
-  75% {
-    transform: translateY(-2px) rotate(-4deg);
+/* Speech/hint bubbles: tumble into place on load. */
+#speech-bubble,
+#hint-card,
+#diagram-hint-card {
+  animation: bubble-settle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@keyframes bubble-settle {
+  from {
+    transform: translateY(-40px) rotate(-12deg);
+    opacity: 0;
   }
 
-  100% {
+  to {
     transform: translateY(0) rotate(0deg);
+    opacity: 1;
   }
 }
 
@@ -282,11 +288,17 @@
     animation: none;
   }
 
-  #speech-bubble {
+  #speech-bubble,
+  #hint-card,
+  #diagram-hint-card {
     animation: none;
   }
 
   #page-heading {
+    animation: none;
+  }
+
+  #anatomy-heading {
     animation: none;
   }
 }
