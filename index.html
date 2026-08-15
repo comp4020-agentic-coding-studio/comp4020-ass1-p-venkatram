@@ -6,9 +6,13 @@
     <title>The heart, in the body</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="bg-slate-50 font-diagram text-slate-900">
+  <body
+    class="bg-[url('./src/assets/heart-background.jpg')] bg-cover bg-center bg-no-repeat font-diagram text-slate-900"
+  >
     <main class="relative flex h-screen w-screen items-center justify-center overflow-hidden">
-      <h1 class="sr-only">The heart, in the body</h1>
+      <h1 id="page-heading" class="absolute top-6 left-6 text-xl font-bold text-slate-700 sm:text-2xl">
+        The Human Heart...
+      </h1>
 
       <div id="figure" class="relative aspect-[211/535] h-full max-h-[92vh]">
         <img
@@ -18,6 +22,36 @@
           aria-hidden="true"
           class="absolute inset-0 h-full w-full object-contain"
         />
+
+        <div
+          id="speech-bubble"
+          class="absolute"
+          style="left: 78%; top: -2%; width: clamp(95px, 26vw, 190px)"
+        >
+          <svg
+            viewBox="0 0 220 130"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            class="absolute inset-0 h-full w-full overflow-visible"
+          >
+            <path
+              d="M128,98 C132,112 122,126 100,132 C114,120 118,108 112,96 Z"
+              fill="powderblue"
+              stroke="black"
+              stroke-width="5"
+              stroke-linejoin="round"
+            />
+            <ellipse cx="110" cy="58" rx="102" ry="54" fill="powderblue" stroke="black" stroke-width="6" />
+            <path d="M60,14 Q40,6 24,14" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M182,26 Q198,34 206,48" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+          </svg>
+          <p
+            class="relative z-10 flex items-center justify-center text-center text-[8px] leading-tight font-bold text-slate-800 sm:text-[13px] sm:leading-snug"
+            style="height: 78%; padding: 0 12%"
+          >
+            Click on my heart to see how it works...
+          </p>
+        </div>
 
         <nav aria-label="Primary" class="contents">
           <a
@@ -36,6 +70,5 @@
         </nav>
       </div>
     </main>
-    <script type="module" src="./landing.ts"></script>
   </body>
 </html>

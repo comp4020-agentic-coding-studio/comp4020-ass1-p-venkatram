@@ -192,14 +192,11 @@
   }
 }
 
-/* Landing page: the heart pulses at rest to invite the click, then the
-   idle animation hands off to a plain CSS transition (toggled by
-   landing.ts adding .zooming-to-heart to <body>) that scales it up to fill
-   the screen while the body outline fades out from underneath it. The 1s
-   cycle matches a resting heart rate of 60 beats per minute. */
+/* Landing page: the heart just pulses at rest to invite the click — clicking
+   it is a plain link straight to heart.html, no transition to intercept. The
+   1s cycle matches a resting heart rate of 60 beats per minute. */
 #heart-link {
   transform-origin: center;
-  transition: transform 0.6s cubic-bezier(0.32, 0, 0.2, 1);
   animation: heartbeat 1s ease-in-out infinite;
 }
 
@@ -218,15 +215,51 @@
   }
 }
 
-.zooming-to-heart #heart-link {
-  animation: none;
-  transform: scale(11);
-  z-index: 30;
+/* Page heading: fades in while sliding in from the left on load. */
+#page-heading {
+  animation: heading-fade-in-left 0.8s ease-out both;
 }
 
-.zooming-to-heart #body-outline {
-  transition: opacity 0.4s ease;
-  opacity: 0;
+@keyframes heading-fade-in-left {
+  from {
+    transform: translateX(-24px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Speech bubble: a bold-outlined comic-style ellipse (SVG, drawn to match the
+   reference bubble shape) with a curled tail pointing back toward the
+   figure's mouth, kept at least 1cm clear of the outline itself. Tumbles in
+   and settles on load. */
+#speech-bubble {
+  aspect-ratio: 220 / 130;
+  transform-origin: 10% 60%;
+  animation: bubble-settle 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@keyframes bubble-settle {
+  0% {
+    transform: translateY(-32px) rotate(-30deg);
+    opacity: 0;
+  }
+
+  55% {
+    transform: translateY(3px) rotate(8deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: translateY(-2px) rotate(-4deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -247,6 +280,13 @@
 
   #heart-link {
     animation: none;
-    transition: none;
+  }
+
+  #speech-bubble {
+    animation: none;
+  }
+
+  #page-heading {
+    animation: none;
   }
 }
