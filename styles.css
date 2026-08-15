@@ -195,11 +195,12 @@
 /* Landing page: the heart pulses at rest to invite the click, then the
    idle animation hands off to a plain CSS transition (toggled by
    landing.ts adding .zooming-to-heart to <body>) that scales it up to fill
-   the screen while the body outline fades out from underneath it. */
+   the screen while the body outline fades out from underneath it. The 1s
+   cycle matches a resting heart rate of 60 beats per minute. */
 #heart-link {
   transform-origin: center;
   transition: transform 0.6s cubic-bezier(0.32, 0, 0.2, 1);
-  animation: heartbeat 2.4s ease-in-out infinite;
+  animation: heartbeat 1s ease-in-out infinite;
 }
 
 @keyframes heartbeat {
