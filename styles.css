@@ -223,7 +223,7 @@
   z-index: 30;
 }
 
-.zooming-to-heart #body-outline-svg {
+.zooming-to-heart #body-outline {
   transition: opacity 0.4s ease;
   opacity: 0;
 }
