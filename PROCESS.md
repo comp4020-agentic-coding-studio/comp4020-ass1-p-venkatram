@@ -63,6 +63,19 @@ in the diagram and hold the overall sequence in their head at the same time.
    That turned "is this anatomically believable" into "does this match the
    reference," a much sharper check than describing a heart in prose and
    hoping the geometry came out right.
+4. **Verifying against a rendered browser, not just the class list.** A run of
+   small post-ship reports — Comic Sans silently substituting to a generic
+   cursive font on non-Windows/Apple devices, a page-3 heading that wasn't
+   fading in like its siblings, and pages reachable only by a direct link
+   having no way back — kept turning out wrong when I reasoned about the CSS
+   statically. Switching to driving a headless Chrome instance and reading
+   its actual computed styles, `document.fonts` status, and click/tap
+   behaviour found the real cause each time, instead of a plausible-looking
+   guess: the font fix meant self-hosting Comic Neue rather than trusting a
+   font-stack fallback, and the heading fix meant noticing the animation was
+   wired to an element that was `sr-only` at that viewport, not missing
+   outright
+   ([`352d8ea...df2e459`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/compare/352d8ea...df2e459)).
 
 ## Before you ship
 
