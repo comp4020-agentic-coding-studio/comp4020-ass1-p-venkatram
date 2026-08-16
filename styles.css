@@ -270,9 +270,12 @@
   }
 }
 
-/* "How it Works" heading: same left-to-right fade-in as the other page
-   headings above, just missing until now. */
-#heading-how-it-works {
+/* The three column headings on webpage 3 ("Flow of Blood", "How it Works",
+   "How to Remember") share this fade-in, whichever of their mobile/desktop
+   instance is the one actually visible at a given viewport. */
+#heading-flow,
+.how-it-works-heading,
+#heading-remember {
   animation: heading-fade-in-left 0.8s ease-out both;
 }
 
@@ -350,7 +353,9 @@
     animation: none;
   }
 
-  #heading-how-it-works {
+  #heading-flow,
+  .how-it-works-heading,
+  #heading-remember {
     animation: none;
   }
 }
