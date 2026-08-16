@@ -252,8 +252,27 @@
 /* Speech/hint bubbles: tumble into place on load. */
 #speech-bubble,
 #hint-card,
-#diagram-hint-card {
+#diagram-hint-card,
+#diagram-hint-card-mobile,
+#more-button-mobile {
   animation: bubble-settle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* The horizontal slice-scrubber has no native indicator on touch browsers
+   (overlay scrollbars only flash while actively dragging), so its scrollbar
+   is drawn always-on and coloured to read as an affordance, not chrome. */
+#slices::-webkit-scrollbar {
+  height: 8px;
+}
+
+#slices::-webkit-scrollbar-track {
+  background: rgb(0 0 0 / 8%);
+  border-radius: 9999px;
+}
+
+#slices::-webkit-scrollbar-thumb {
+  background: var(--color-slate-400);
+  border-radius: 9999px;
 }
 
 @keyframes bubble-settle {
@@ -290,7 +309,9 @@
 
   #speech-bubble,
   #hint-card,
-  #diagram-hint-card {
+  #diagram-hint-card,
+  #diagram-hint-card-mobile,
+  #more-button-mobile {
     animation: none;
   }
 

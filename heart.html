@@ -9,26 +9,17 @@
   <body
     class="bg-[url('./src/assets/heart-background.jpg')] bg-cover bg-center bg-fixed bg-no-repeat bg-blend-multiply bg-black/10 font-diagram text-slate-900"
   >
-    <main class="relative flex flex-col sm:h-screen sm:flex-row sm:overflow-hidden">
+    <main class="relative flex h-dvh flex-col overflow-hidden pt-12 sm:h-screen sm:flex-row sm:pt-0">
       <h1
         id="anatomy-heading"
-        class="pointer-events-none fixed inset-x-0 top-4 z-40 px-4 text-center font-diagram text-xl font-bold text-black sm:top-6 sm:text-2xl"
+        class="pointer-events-none fixed inset-x-0 top-2 z-40 px-4 text-center font-diagram text-xl font-bold text-black sm:top-6 sm:text-2xl"
       >
         Anatomy of the heart&hellip;
       </h1>
 
-      <nav aria-label="Primary" class="z-30 mt-16 flex justify-center px-4 sm:fixed sm:right-4 sm:bottom-10 sm:mt-0 sm:block sm:px-0">
-        <a
-          href="how-it-works.html"
-          class="rounded-full border border-sky-600 bg-white/90 px-4 py-2 text-sm font-bold text-sky-700 shadow-sm backdrop-blur transition hover:bg-sky-50"
-        >
-          Click here to know how it functions
-        </a>
-      </nav>
-
       <section
         aria-label="Interactive heart cross-section"
-        class="relative h-[65vh] w-full shrink-0 overflow-hidden sm:h-full sm:w-1/2"
+        class="relative w-full flex-1 min-h-0 overflow-hidden sm:h-full sm:w-1/2 sm:flex-none"
       >
         <div
           id="slices"
@@ -40,13 +31,22 @@
         >
           <div
             id="heart-stage"
-            class="sticky top-0 left-0 flex h-full w-screen shrink-0 items-center justify-center sm:w-full"
+            class="sticky top-0 left-0 flex h-full w-screen shrink-0 items-center justify-center pb-10 sm:w-full sm:pb-0"
           >
-            <div class="relative flex flex-col items-center" style="transform: translateY(-1.5cm)">
+            <div class="relative flex flex-col items-center gap-y-2 sm:translate-y-[-1.5cm]">
+              <div
+                id="hint-card"
+                class="z-20 order-last w-max max-w-[85vw] shrink-0 rounded-lg border-t-4 border-yellow-400 bg-white/95 px-3 py-1.5 text-center shadow-md sm:absolute sm:top-full sm:left-1/2 sm:order-none sm:mt-[0.6cm] sm:-translate-x-1/2"
+              >
+                <p class="text-[9px] leading-tight font-bold whitespace-nowrap text-slate-800 sm:text-[12px] sm:leading-snug">
+                  Scroll to slice the heart open
+                </p>
+              </div>
+
               <div
                 id="heart-explode"
-                class="relative [perspective:1800px]"
-                style="width: clamp(3.5cm, 40vw, 6cm); aspect-ratio: 285 / 394"
+                class="relative shrink-0 [perspective:1800px]"
+                style="width: clamp(4.3cm, 48vw, 6.8cm); aspect-ratio: 285 / 394"
               >
                 <div class="absolute inset-0 transform-3d [transform:rotateX(-8deg)]">
                   <!-- Base layer: the innermost view, always present, revealed once both doors above swing open. -->
@@ -91,16 +91,6 @@
                   </div>
                 </div>
               </div>
-
-              <div
-                id="hint-card"
-                class="absolute top-full left-1/2 z-20 mt-[0.6cm] -translate-x-1/2 rounded-xl border-4 border-yellow-400 bg-white/95 px-3 py-2 text-center shadow-md"
-                style="width: 4cm; max-width: 70vw"
-              >
-                <p class="text-[9px] leading-tight font-bold text-slate-800 sm:text-[12px] sm:leading-snug">
-                  Scroll to slice the heart open
-                </p>
-              </div>
             </div>
           </div>
 
@@ -109,15 +99,18 @@
       </section>
 
       <section
-        class="relative flex w-full items-center justify-center p-6 sm:h-full sm:w-1/2"
+        class="relative flex min-h-0 w-full flex-1 flex-col items-center justify-center gap-y-2 p-4 sm:h-full sm:w-1/2 sm:flex-none sm:flex-row sm:p-6"
         aria-labelledby="diagram-heading"
       >
         <h2 id="diagram-heading" class="sr-only">Labeled anatomy of the heart</h2>
-        <div class="relative mx-auto" style="width: clamp(4.5cm, 50vw, 7.5cm); transform: translateY(-1.5cm)">
+        <div
+          class="relative mx-auto min-h-0 w-auto max-w-[clamp(5.2cm,58vw,8cm)] flex-1 sm:max-w-full sm:h-auto sm:w-[var(--diagram-w)] sm:flex-none sm:translate-y-[-1.5cm]"
+          style="--diagram-w: clamp(5cm, 54vw, 8cm)"
+        >
           <img
             src="./src/assets/heart-labeled-diagram.png"
             alt="Labeled cross-section of the heart showing the superior and inferior venae cavae, aorta, pulmonary artery and veins, right and left atria, right and left ventricles, the mitral, pulmonary, aortic, and tricuspid valves, and the pericardium"
-            class="block h-auto w-full"
+            class="block h-full w-auto max-w-full object-contain sm:h-auto sm:w-full"
           />
 
           <a
@@ -235,15 +228,40 @@
 
           <div
             id="diagram-hint-card"
-            class="absolute top-full left-1/2 z-20 mt-[1.1cm] -translate-x-1/2 rounded-xl border-4 border-yellow-400 bg-white/95 px-3 py-2 text-center shadow-md"
-            style="width: 4cm; max-width: 70vw"
+            class="hidden sm:absolute sm:top-full sm:left-1/2 sm:z-20 sm:mt-[1.1cm] sm:block sm:w-max sm:max-w-[85vw] sm:-translate-x-1/2 rounded-lg border-t-4 border-yellow-400 bg-white/95 px-3 py-1.5 text-center shadow-md"
           >
-            <p class="text-[9px] leading-tight font-bold text-slate-800 sm:text-[12px] sm:leading-snug">
+            <p class="text-[9px] leading-tight font-bold whitespace-nowrap text-slate-800 sm:text-[12px] sm:leading-snug">
               Click on each label to know more&hellip;
             </p>
           </div>
         </div>
+
+        <div class="flex shrink-0 items-center justify-center gap-x-8 sm:hidden">
+          <div
+            id="diagram-hint-card-mobile"
+            class="z-20 w-max max-w-[85vw] rounded-lg border-t-4 border-yellow-400 bg-white/95 px-3 py-1.5 text-center shadow-md"
+          >
+            <p class="text-[9px] leading-tight font-bold whitespace-nowrap text-slate-800">Click on each label to know more&hellip;</p>
+          </div>
+
+          <a
+            id="more-button-mobile"
+            href="how-it-works.html"
+            class="shrink-0 rounded-full border border-sky-600 bg-white/90 px-3 py-1.5 text-xs font-bold text-sky-700 shadow-sm backdrop-blur transition hover:bg-sky-50 hover:shadow-[0_0_12px_3px_rgba(2,132,199,0.5)] active:bg-sky-50 active:shadow-[0_0_12px_3px_rgba(2,132,199,0.5)]"
+          >
+            More&hellip;
+          </a>
+        </div>
       </section>
+
+      <nav aria-label="Primary" class="fixed right-4 bottom-10 z-30">
+        <a
+          href="how-it-works.html"
+          class="hidden rounded-full border border-sky-600 bg-white/90 px-4 py-2 text-sm font-bold text-sky-700 shadow-sm backdrop-blur transition hover:bg-sky-50 sm:inline-block"
+        >
+          Click here to know how it functions
+        </a>
+      </nav>
     </main>
     <script type="module" src="./heart.ts"></script>
   </body>
