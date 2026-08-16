@@ -17,7 +17,7 @@
         Anatomy of the heart&hellip;
       </h1>
 
-      <nav aria-label="Primary" class="fixed bottom-10 right-4 z-30">
+      <nav aria-label="Primary" class="z-30 mt-16 flex justify-center px-4 sm:fixed sm:right-4 sm:bottom-10 sm:mt-0 sm:block sm:px-0">
         <a
           href="how-it-works.html"
           class="rounded-full border border-sky-600 bg-white/90 px-4 py-2 text-sm font-bold text-sky-700 shadow-sm backdrop-blur transition hover:bg-sky-50"
@@ -28,7 +28,7 @@
 
       <section
         aria-label="Interactive heart cross-section"
-        class="relative h-screen w-full shrink-0 overflow-hidden sm:h-full sm:w-1/2"
+        class="relative h-[65vh] w-full shrink-0 overflow-hidden sm:h-full sm:w-1/2"
       >
         <div
           id="slices"
@@ -40,13 +40,13 @@
         >
           <div
             id="heart-stage"
-            class="sticky top-0 left-0 flex h-full w-screen shrink-0 items-center justify-start pl-2 sm:w-full sm:justify-center sm:pl-0"
+            class="sticky top-0 left-0 flex h-full w-screen shrink-0 items-center justify-center sm:w-full"
           >
             <div class="relative flex flex-col items-center" style="transform: translateY(-1.5cm)">
               <div
                 id="heart-explode"
                 class="relative [perspective:1800px]"
-                style="width: 7cm; aspect-ratio: 285 / 394"
+                style="width: clamp(3.5cm, 40vw, 6cm); aspect-ratio: 285 / 394"
               >
                 <div class="absolute inset-0 transform-3d [transform:rotateX(-8deg)]">
                   <!-- Base layer: the innermost view, always present, revealed once both doors above swing open. -->
@@ -113,7 +113,7 @@
         aria-labelledby="diagram-heading"
       >
         <h2 id="diagram-heading" class="sr-only">Labeled anatomy of the heart</h2>
-        <div class="relative mx-auto" style="width: 9cm; transform: translateY(-1.5cm)">
+        <div class="relative mx-auto" style="width: clamp(4.5cm, 50vw, 7.5cm); transform: translateY(-1.5cm)">
           <img
             src="./src/assets/heart-labeled-diagram.png"
             alt="Labeled cross-section of the heart showing the superior and inferior venae cavae, aorta, pulmonary artery and veins, right and left atria, right and left ventricles, the mitral, pulmonary, aortic, and tricuspid valves, and the pericardium"
@@ -125,7 +125,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Superior vena cava — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 11.04%; top: 17.56%; width: 12.98%; height: 5.25%"
           ></a>
           <a
@@ -133,7 +133,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Aorta — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 49.29%; top: 18.95%; width: 5.93%; height: 2.78%"
           ></a>
           <a
@@ -141,7 +141,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Pulmonary artery — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 73.42%; top: 21.41%; width: 12.27%; height: 5.89%"
           ></a>
           <a
@@ -149,7 +149,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Pulmonary veins — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 79.04%; top: 30.84%; width: 12.17%; height: 5.78%"
           ></a>
           <a
@@ -157,7 +157,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Left atrium — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 54.5%; top: 38.33%; width: 7.57%; height: 5.89%"
           ></a>
           <a
@@ -165,7 +165,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Right atrium — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 30.98%; top: 47.86%; width: 8.38%; height: 4.6%"
           ></a>
           <a
@@ -173,7 +173,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Mitral valve — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 80.57%; top: 46.47%; width: 7.05%; height: 5.89%"
           ></a>
           <a
@@ -181,7 +181,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Pulmonary valve — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 9.41%; top: 60.49%; width: 13.8%; height: 6.1%"
           ></a>
           <a
@@ -189,7 +189,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Aortic valve — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 83.33%; top: 56.53%; width: 7.57%; height: 6%"
           ></a>
           <a
@@ -197,7 +197,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Tricuspid valve — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 11.55%; top: 70.13%; width: 12.27%; height: 5.89%"
           ></a>
           <a
@@ -205,7 +205,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Right ventricle — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 45.3%; top: 68.42%; width: 12.27%; height: 5.67%"
           ></a>
           <a
@@ -213,7 +213,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Left ventricle — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 62.37%; top: 61.13%; width: 10.43%; height: 5.67%"
           ></a>
           <a
@@ -221,7 +221,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Inferior vena cava — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 20.04%; top: 88.86%; width: 23.11%; height: 2.68%"
           ></a>
           <a
@@ -229,7 +229,7 @@
             target="_blank"
             rel="noopener"
             aria-label="Pericardium — read more on Wikipedia"
-            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
+            class="absolute rounded-lg transition hover:bg-sky-300/25 hover:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] active:bg-sky-300/25 active:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)] focus:outline-none focus-visible:bg-sky-300/25 focus-visible:shadow-[0_0_18px_6px_rgba(56,189,248,0.65)]"
             style="left: 75.87%; top: 88.76%; width: 13.5%; height: 3.53%"
           ></a>
 

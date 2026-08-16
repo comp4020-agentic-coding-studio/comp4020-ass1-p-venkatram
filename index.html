@@ -11,7 +11,7 @@
   >
     <main class="relative flex h-screen w-screen items-center justify-center overflow-hidden">
       <h1 id="page-heading" class="absolute top-6 left-6 text-xl font-bold text-slate-700 sm:text-2xl">
-        The Human Heart...
+        The Human <span class="block sm:inline">Heart...</span>
       </h1>
 
       <div id="figure" class="relative aspect-[211/535] h-full max-h-[92vh]">
@@ -26,7 +26,7 @@
         <div
           id="speech-bubble"
           class="absolute"
-          style="left: 78%; top: -2%; width: clamp(95px, 26vw, 190px); aspect-ratio: 220 / 130"
+          style="left: 78%; top: -2%; width: clamp(120px, 30vw, 190px); aspect-ratio: 220 / 130"
         >
           <svg
             viewBox="0 0 220 130"
@@ -42,14 +42,17 @@
               stroke-linejoin="round"
             />
             <ellipse cx="110" cy="58" rx="102" ry="54" fill="powderblue" stroke="black" stroke-width="6" />
-            <path d="M60,14 Q40,6 24,14" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" />
-            <path d="M182,26 Q198,34 206,48" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+            <g class="hidden sm:block">
+              <path d="M60,14 Q40,6 24,14" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+              <path d="M182,26 Q198,34 206,48" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" />
+            </g>
           </svg>
           <p
-            class="relative z-10 flex items-center justify-center text-center text-[8px] leading-tight font-bold text-slate-800 sm:text-[13px] sm:leading-snug"
-            style="height: 78%; padding: 0 12%"
+            class="relative z-10 flex items-center justify-center text-center text-[9px] leading-tight font-bold text-slate-800 sm:text-[13px] sm:leading-snug"
+            style="height: 78%; padding: 0 10%"
           >
-            Click on the heart to see how it works...
+            <span class="sm:hidden">Tap the heart to see how it works...</span>
+            <span class="hidden sm:inline">Click on the heart to see how it works...</span>
           </p>
         </div>
 

@@ -32,7 +32,14 @@ function setActiveStage(id: string): void {
 
   diagram.dataset.activeStage = id;
   caption.textContent = stage.caption;
-  if (flowchart) flowchart.dataset.activeStage = id;
+  if (flowchart) {
+    flowchart.dataset.activeStage = id;
+    flowchart.querySelector<HTMLElement>(`[data-flow-stage="${id}"]`)?.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }
 
   for (const button of buttons) {
     button.setAttribute("aria-pressed", String(button.dataset.stageTarget === id));
