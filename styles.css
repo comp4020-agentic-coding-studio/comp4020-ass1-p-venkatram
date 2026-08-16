@@ -1,9 +1,30 @@
 @import "tailwindcss";
 
+/* Self-hosted: "Comic Sans MS" only exists on Windows and "Chalkboard SE"
+   only on Apple platforms, so without a bundled fallback the font silently
+   becomes whatever generic "cursive" resolves to (often not cursive at all)
+   on Linux/Android/Chrome-OS devices, including the marking machine. Comic
+   Neue is an SIL-licensed, metrically similar open replacement. */
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./src/assets/fonts/comic-neue-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./src/assets/fonts/comic-neue-700.woff2") format("woff2");
+}
+
 /* Declared as a theme token (not raw CSS) so it's still an ordinary
    Tailwind utility (`font-diagram`) on the elements that use it. */
 @theme {
-  --font-diagram: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
+  --font-diagram: "Comic Neue", "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
 }
 
 /* Tailwind has no utility for animating along an arbitrary SVG path, so the
@@ -249,6 +270,12 @@
   }
 }
 
+/* "How it Works" heading: same left-to-right fade-in as the other page
+   headings above, just missing until now. */
+#heading-how-it-works {
+  animation: heading-fade-in-left 0.8s ease-out both;
+}
+
 /* Speech/hint bubbles: tumble into place on load. */
 #speech-bubble,
 #hint-card,
@@ -320,6 +347,10 @@
   }
 
   #anatomy-heading {
+    animation: none;
+  }
+
+  #heading-how-it-works {
     animation: none;
   }
 }
