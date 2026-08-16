@@ -1,9 +1,5 @@
 # Process overview
 
-<!-- TEMPLATE: this file is a shape to fill in, not a form. Replace everything
-     in it with your own overview, and delete this comment — `pnpm
-     check:evidence` will remind you if it's still here. -->
-
 A reading-guide to how the work came together --- a map to your process, not an
 essay about it. Markers read this file and follow its citations; they don't
 trawl the repo for evidence you didn't point at, so if a moment mattered, cite
@@ -17,60 +13,56 @@ cover every deliverable.
 
 ## What I built
 
-One paragraph: the thing, and the idea behind it.
+An interactive site that explains how the heart works, across three pages. The
+landing page shows an animated heart beating at 60bpm, positioned between the
+lungs and above the stomach and tilted slightly left; clicking it leads to the
+heart explorer. That page's first section dissects the heart layer by layer,
+concluding with a figure of blood flow, then a second section highlights the
+heart's parts — chambers, valves, veins — each clickable for more detail. The
+third page uses scrollytelling: scrolling through the middle section drives an
+animated diagram of blood being pumped, while a flowchart down the side tracks
+the same journey as single-word stages, so a reader can follow the mechanism
+in the diagram and hold the overall sequence in their head at the same time.
 
 ## The moments that mattered
 
-Three or four for an assignment; fewer is fine for a weekly prototype. Keep the
-list short so each moment has room to do all four jobs:
-
-1. **what happened** --- the problem, or the thing the agent got wrong
-2. **what you did instead of the obvious thing** --- the call you made, and why
-   it beat the obvious one
-3. **how you knew it was right** --- the check you ran, the viewport you looked
-   at, what you read before accepting the diff
-4. **the citation** --- a commit or commit range, a `CLAUDE.md` change, a check
-   that went from red to green, a prompt paired with the commit it produced
-
-Jobs 2 and 3 are the ones the repo can't tell a reader on its own, so they're
-where the marks are. The strongest moments are the ones where a correction
-landed in the **harness** rather than in another prompt --- a rule added to
-`CLAUDE.md`, a check wired up, an attempt thrown away: re-prompting until it
-passes is the routine case, and changing what the agent works against is the
-skilled one.
-
-Cite each moment as a link whose text is the commit hash or range and whose
-target is this repo's commit or compare URL, so a reader clicks straight to the
-evidence:
-
-- one commit: [`a1b2c3d`](https://github.com/YOUR-ORG/YOUR-REPO/commit/a1b2c3d)
-- a range:
-  [`a1b2c3d...e4f5a6b`](https://github.com/YOUR-ORG/YOUR-REPO/compare/a1b2c3d...e4f5a6b)
-
-To pair a prompt with the commit it produced, quote the prompt (curated, not a
-full transcript) next to the citation:
-
-> the prompt, verbatim
-
-Screenshots are welcome where one carries the verification better than a
-sentence does. Commit the file to this repo and link it with a **relative**
-path, which is what makes it render on GitHub: `![alt text](docs/before.png)`.
-Images don't count towards the word count and don't replace the citation.
-
-### A worked moment, for shape
-
-Delete this section along with the rest of the boilerplate --- it's here to show
-the four jobs in one paragraph, not to be imitated in content.
-
-> The date formatter kept coming back with `toLocaleDateString()` and no locale
-> argument, so the same build rendered differently on my machine and in CI. I'd
-> already re-prompted it twice, which fixed the line but not the habit, so the
-> third time I put the rule in `CLAUDE.md` instead
-> ([`3f9ac21`](https://github.com/YOUR-ORG/YOUR-REPO/commit/3f9ac21)) and added
-> a spec test that fails on a bare `toLocaleDateString`. That's what told me it
-> had actually taken: the test went red against the old code and green against
-> the new, and the next two features it wrote passed it without prompting
-> ([`3f9ac21...b7e0d14`](https://github.com/YOUR-ORG/YOUR-REPO/compare/3f9ac21...b7e0d14)).
+1. **Getting the diagram's anatomy actually right.** The first pass at the
+   blood-flow diagram
+   ([`123ce1a`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/commit/123ce1a))
+   had valves opening the wrong way and flow paths that didn't match the
+   text next to them — a diagram that only looks right until someone follows
+   it stage by stage. Instead of accepting a diagram that merely looked
+   plausible, I went through it valve by valve and path by path against the
+   caption text: valve stacking, flow routing, and duct cohesion
+   ([`1d13278`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/commit/1d132789fdf9f3d0256a5b7c3c245f2fae44503e)),
+   then the pulmonary and aortic valves specifically, which were opening
+   inward instead of outward
+   ([`456ca8a`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/commit/456ca8a327f8ba38bc1aba6dc1519c47e48ce6cc)).
+   I checked each fix by reading the stage caption in `main.ts` and tracing
+   the corresponding path by eye, stage by stage, rather than trusting that
+   a diagram which rendered without errors was a diagram that was correct
+   ([`123ce1a...456ca8a`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/compare/123ce1a...456ca8a)).
+2. **Making the whole site actually responsive.** The site was originally
+   built desktop-first, and making every page hold together at both marking
+   viewports — not just resize without breaking, but read well at both —
+   took far more iteration than the initial build did: the heart pages'
+   mobile layout, the scrollytelling page's stage detection, and the landing
+   page's speech bubble all needed separate rounds of viewport-specific
+   fixes, each checked against both breakpoints so a mobile fix couldn't
+   quietly break desktop or vice versa
+   ([`9e3db01...b77922b`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/compare/9e3db01...b77922b)).
+3. **Directing the build from reference images.** Rather than describing the
+   heart's anatomy and layout in words, I gave Claude screenshots and
+   reference images directly and had it match the diagram and page layout to
+   what was actually pictured — first for the cross-section explorer's
+   anatomy
+   ([`d5360d6`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/commit/d5360d6732567c23b446b8370381ab507ca408a1)),
+   then again to swap the landing page's placeholder art for the real body
+   and heart images
+   ([`62c9308`](https://github.com/comp4020-agentic-coding-studio/comp4020-ass1-p-venkatram/commit/62c93082df1add9193bc68e213d5eec8e4ee74b4)).
+   That turned "is this anatomically believable" into "does this match the
+   reference," a much sharper check than describing a heart in prose and
+   hoping the geometry came out right.
 
 ## Before you ship
 
